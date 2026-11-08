@@ -116,5 +116,5 @@ All graded transcripts must still be generated with `MOCK_LLM=true`.
 - **Slow first import**: torch/chromadb import takes several seconds; that's normal.
 - **`LangChainDeprecationWarning` for `RunnableWithMessageHistory`**: expected, ignore.
 
-## 8. For AI agents
-Read [`AGENTS.md`](../AGENTS.md) then [`docs/plans/README.md`](plans/README.md).
+## 8. Architecture and Contribution Guidelines
+See [`CONTRIBUTING.md`](../CONTRIBUTING.md), [`docs/REPORT.md`](REPORT.md), and [`architecture.md`](../architecture.md).

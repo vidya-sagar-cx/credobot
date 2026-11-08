@@ -218,3 +218,9 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# CredoBot
+.chroma/
+logs/
+.pytest_cache/
+

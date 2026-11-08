@@ -16,7 +16,7 @@ a second independent agent team before they reach the user, and operates under a
 explicit governance policy — orchestrated with CrewAI, deployed behind a FastAPI
 backend, and evaluated end to end.
 
-X corps's lending-operations team wants an agent that answers loan-policy questions and
+CRED's lending-operations team wants an agent that answers loan-policy questions and
 checks a specific loan application's status, so support staff can respond to member
 queries instantly and consistently. You are building that agent — and building it to
 a standard where it could pass a real production governance review, not just a
