@@ -90,9 +90,9 @@ the data) and record why.
 - `test_counter_increments`.
 
 ## Steps
-- [ ] Implement module + `distribution_report`
-- [ ] Run main; check escalated share; adjust weights only if needed
-- [ ] Tests; Verify; DECISIONS; PROGRESS; commit
+- [x] Implement module + `distribution_report`
+- [x] Run main; check escalated share; adjust weights only if needed
+- [x] Tests; Verify; DECISIONS; PROGRESS; commit
 
 ## Verify
 1. `uv run python -m credobot.tools.loan_status` → prints formula, distribution stats,
