@@ -24,4 +24,4 @@ Find a plan's commit with `git log --oneline --grep "plan NN"`.
 | 14 | [End-to-end pipeline](14-pipeline.md) | — | 09, 10, 11, 12, 13 | done | antigravity | 2026-11-08 | End-to-end pipeline wiring guardrails, budget, memory, crew, review |
 | 15 | [FastAPI & JSONL logging](15-api-logging.md) | T11, T12 | 14 | done | antigravity | 2026-11-08 | FastAPI HTTP and WebSocket endpoints with JSONL request logging |
 | 16 | [LLM-as-judge evaluation](16-evaluation.md) | T13 | 14 | done | antigravity | 2026-11-08 | 15 queries evaluated across 4 metrics (acc=0.74, gnd=1.00, cmp=0.56, sft=1.00) |
-| 17 | [Transcripts & final README](17-final-readme.md) | all | 15, 16 | todo | | | |
+| 17 | [Transcripts & final README](17-final-readme.md) | all | 15, 16 | done | antigravity | 2026-11-08 | All 15 transcripts regenerated, INDEX.md built, README completed, 150 tests passing |

@@ -1,6 +1,6 @@
 # Part 1 — IDK Threshold Calibration
 
-- Generated: 2026-11-08T07:37:22.334369+00:00
+- Generated: 2026-11-08T10:12:31.266165+00:00
 - MOCK_LLM: True
 - CREWAI_DISABLE_TELEMETRY: true
 - OTEL_SDK_DISABLED: true

@@ -1,6 +1,6 @@
 # Part 1 — Grounded Generation Demo
 
-- Generated: 2026-11-08T07:38:10.924192+00:00
+- Generated: 2026-11-08T10:12:31.702003+00:00
 - MOCK_LLM: True
 - CREWAI_DISABLE_TELEMETRY: true
 - OTEL_SDK_DISABLED: true

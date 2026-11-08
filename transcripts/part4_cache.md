@@ -1,6 +1,6 @@
 # Part 4 — Response Caching Performance
 
-- Generated: 2026-11-08T09:25:32.411951+00:00
+- Generated: 2026-11-08T10:12:36.518433+00:00
 - MOCK_LLM: True
 - CREWAI_DISABLE_TELEMETRY: true
 - OTEL_SDK_DISABLED: true
@@ -14,7 +14,7 @@ CredoBot wraps grounded retrieval with an in-memory thread-safe LRU response cac
 | Raw Input Query | What is the penalty for prepaying a home loan? |   what is the PENALTY for prepaying a home loan?  |
 | Normalized Cache Key | kb_fixed::what is the penalty for prepaying a home loan | kb_fixed::what is the penalty for prepaying a home loan |
 | Cache Outcome | MISS | HIT |
-| Execution Latency | 920.55 ms | 0.03 ms |
+| Execution Latency | 69.72 ms | 0.03 ms |
 | Chroma Query Calls | 1 | 0 |
 | LLM Generation Steps | 1 | 0 |
 | Answers Identical | N/A | YES (Exact Match) |

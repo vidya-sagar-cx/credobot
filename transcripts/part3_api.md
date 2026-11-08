@@ -1,6 +1,6 @@
 # Part 3 — FastAPI Service & Structured JSON-Lines Logging
 
-- Generated: 2026-11-08T09:57:24.892702+00:00
+- Generated: 2026-11-08T10:12:40.016492+00:00
 - MOCK_LLM: True
 - CREWAI_DISABLE_TELEMETRY: true
 - OTEL_SDK_DISABLED: true
@@ -11,13 +11,13 @@ Demonstration of the production FastAPI backend: HTTP endpoints (`POST /ask`, `P
 
 - **HTTP Status:** `200`
 
-- **X-Trace-Id Header:** `25501d2a980e4484bcd3382fef00edcd`
+- **X-Trace-Id Header:** `547a75b5a6114c7a9c1d4e0b7061dea0`
 
 ### Response JSON Excerpt
 
 ```json
 {
-  "trace_id": "25501d2a980e4484bcd3382fef00edcd",
+  "trace_id": "547a75b5a6114c7a9c1d4e0b7061dea0",
   "response": {
     "answer": "card, passport, voter identity card, or driving licence. Customers must also provide one officially valid document as verified proof of identity and current residential address, such as an Aadhaar card, passport, voter identity card, or driving licence.",
     "intent": "policy",
@@ -35,9 +35,9 @@ Demonstration of the production FastAPI backend: HTTP endpoints (`POST /ask`, `P
     "final_answer": "card, passport, voter identity card, or driving licence. Customers must also provide one officially valid document as verified proof of identity and current residential address, such as an Aadhaar card, passport, voter identity card, or driving licence.",
     "reason": "All claims supported by context."
   },
-  "cache_hit": false,
+  "cache_hit": true,
   "events": [],
-  "duration_ms": 11011.75
+  "duration_ms": 214.35
 }
 ```
 
@@ -45,7 +45,7 @@ Demonstration of the production FastAPI backend: HTTP endpoints (`POST /ask`, `P
 
 - **HTTP Status:** `200`
 
-- **X-Trace-Id Header:** `00c16ee258a14dc7acbb3565d512288e`
+- **X-Trace-Id Header:** `cdf28878f5f0487fb3d3ff91797a2520`
 
 - **Raw PII Absence in requests.jsonl:** `CONFIRMED (Zero Leakage)`
 
@@ -53,15 +53,15 @@ Demonstration of the production FastAPI backend: HTTP endpoints (`POST /ask`, `P
 
 ```json
 {
-  "@timestamp": "2026-11-08T09:57:23.574010+00:00",
+  "@timestamp": "2026-11-08T10:12:38.856828+00:00",
   "level": "INFO",
   "service": "credobot-api",
-  "trace_id": "00c16ee258a14dc7acbb3565d512288e",
+  "trace_id": "cdf28878f5f0487fb3d3ff91797a2520",
   "event": "http_request",
   "method": "POST",
   "path": "/ask",
   "status_code": 200,
-  "duration_ms": 382.52,
+  "duration_ms": 441.68,
   "error": null,
   "session_id": null,
   "query_masked": "My PAN is [PAN_MASKED], Aadhaar is [AADHAAR_MASKED], and account is [ACCOUNT_MASKED]. Can I prepay my loan LA-1001 without penalty?",
@@ -84,7 +84,7 @@ Demonstration of the production FastAPI backend: HTTP endpoints (`POST /ask`, `P
 
 ```json
 {
-  "trace_id": "8361a37864894551b3e20834214b11c9",
+  "trace_id": "aeeabfa6be6448c1bf5224c9173828ae",
   "error": "budget_exceeded",
   "detail": {
     "query_chars": 12000,
@@ -106,11 +106,11 @@ Demonstration of the production FastAPI backend: HTTP endpoints (`POST /ask`, `P
 
 ```json
 {
-  "trace_id": "fe987792778b40579171efba4a126de0",
+  "trace_id": "6536ba6505be423c887a78d340cb7fbc",
   "doc_id": "branch_hours",
   "chunks_added": {
-    "kb_fixed": 66,
-    "kb_sentence": 29
+    "kb_fixed": 64,
+    "kb_sentence": 27
   }
 }
 ```
@@ -125,13 +125,13 @@ Demonstration of the production FastAPI backend: HTTP endpoints (`POST /ask`, `P
 
 ### WebSocket Turn 1 (Client 1)
 
-- **Turn:** 1 | **Trace ID:** `26a0cf28a8794e2882cff87b3137de80`
+- **Turn:** 1 | **Trace ID:** `1145d05803764f7682e273e38f418405`
 
 > Application LA-1007 (Education Loan, ₹3,133,000) is Approved.
 
 ### WebSocket Turn 2 (Client 1 - Coreference Follow-up)
 
-- **Turn:** 2 | **Trace ID:** `4d08a264bfcc45e68b2b24afb2a4104e`
+- **Turn:** 2 | **Trace ID:** `c0ab49238be24cf6bec74bc08eae3432`
 
 > Application LA-1007 (Education Loan, ₹3,133,000) is Approved.
 
@@ -141,11 +141,11 @@ Demonstration of the production FastAPI backend: HTTP endpoints (`POST /ask`, `P
 
 - **Status:** `Server healthy and responding after abrupt client disconnect`
 
-- **Turn:** 1 | **Trace ID:** `22eeef141921424f9cbaa362456db1a7`
+- **Turn:** 1 | **Trace ID:** `d90815bd59d04b6ba6c16c56c214e2a0`
 
 > Customers must also provide one officially valid document as verified proof of identity and current residential address, such as an Aadhaar card, passport, voter identity card, or driving licence. card, passport, voter identity card, or driving licence.
 
-- **Health Check Post-Disconnect:** `{'status': 'ok', 'mock_llm': True, 'collections': {'kb_fixed': 66, 'kb_sentence': 29}, 'cache': {'hits': 0, 'misses': 6}}`
+- **Health Check Post-Disconnect:** `{'status': 'ok', 'mock_llm': True, 'collections': {'kb_fixed': 64, 'kb_sentence': 27}, 'cache': {'hits': 3, 'misses': 9}}`
 
 ## 6. Structured JSON-Lines Log Tail (`logs/requests.jsonl`)
 
@@ -153,14 +153,14 @@ Demonstration of the production FastAPI backend: HTTP endpoints (`POST /ask`, `P
 
 ```json
 {
-  "@timestamp": "2026-11-08T09:57:24.500293+00:00",
+  "@timestamp": "2026-11-08T10:12:39.643849+00:00",
   "level": "INFO",
   "service": "credobot-api",
-  "trace_id": "4d08a264bfcc45e68b2b24afb2a4104e",
+  "trace_id": "c0ab49238be24cf6bec74bc08eae3432",
   "event": "ws_message",
   "session_id": "ws-demo-session",
   "turn": 2,
-  "duration_ms": 223.47,
+  "duration_ms": 227.0,
   "query_masked": "What is its loan amount and is it escalated?",
   "cache_hit": false,
   "guardrail_events": [],
@@ -173,7 +173,7 @@ Demonstration of the production FastAPI backend: HTTP endpoints (`POST /ask`, `P
 
 ```json
 {
-  "@timestamp": "2026-11-08T09:57:24.501289+00:00",
+  "@timestamp": "2026-11-08T10:12:39.645849+00:00",
   "level": "INFO",
   "service": "credobot-api",
   "trace_id": "",
@@ -187,14 +187,14 @@ Demonstration of the production FastAPI backend: HTTP endpoints (`POST /ask`, `P
 
 ```json
 {
-  "@timestamp": "2026-11-08T09:57:24.854804+00:00",
+  "@timestamp": "2026-11-08T10:12:39.986021+00:00",
   "level": "INFO",
   "service": "credobot-api",
-  "trace_id": "22eeef141921424f9cbaa362456db1a7",
+  "trace_id": "d90815bd59d04b6ba6c16c56c214e2a0",
   "event": "ws_message",
   "session_id": "ws-client2",
   "turn": 1,
-  "duration_ms": 347.78,
+  "duration_ms": 335.14,
   "query_masked": "What documents are required for KYC?",
   "cache_hit": false,
   "guardrail_events": [],
@@ -207,7 +207,7 @@ Demonstration of the production FastAPI backend: HTTP endpoints (`POST /ask`, `P
 
 ```json
 {
-  "@timestamp": "2026-11-08T09:57:24.856803+00:00",
+  "@timestamp": "2026-11-08T10:12:39.988258+00:00",
   "level": "INFO",
   "service": "credobot-api",
   "trace_id": "",
@@ -221,15 +221,15 @@ Demonstration of the production FastAPI backend: HTTP endpoints (`POST /ask`, `P
 
 ```json
 {
-  "@timestamp": "2026-11-08T09:57:24.871810+00:00",
+  "@timestamp": "2026-11-08T10:12:39.999339+00:00",
   "level": "INFO",
   "service": "credobot-api",
-  "trace_id": "e43163ccd0234993a1b086b6516bdd0d",
+  "trace_id": "eb83773f11014cd6b8c784006fd713fa",
   "event": "http_request",
   "method": "GET",
   "path": "/health",
   "status_code": 200,
-  "duration_ms": 9.09,
+  "duration_ms": 5.69,
   "error": null
 }
 ```

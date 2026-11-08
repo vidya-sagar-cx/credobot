@@ -82,13 +82,13 @@ owning plan back to `in-progress` with a note), every `transcripts/*.md`,
 - `test_no_images_or_pdfs` — no `*.png|jpg|pdf|pptx|mp4` tracked (`git ls-files`).
 
 ## Steps
-- [ ] Confirm DECISIONS has no TBD
-- [ ] `run_all.py`; run it end-to-end from a clean state
-- [ ] Write README from DECISIONS + transcripts (no invented numbers)
-- [ ] `tests/test_repo_completeness.py`
-- [ ] Full test suite
-- [ ] Fresh-clone check (Verify #4)
-- [ ] PROGRESS → done; commit
+- [x] Confirm DECISIONS has no TBD
+- [x] `run_all.py`; run it end-to-end from a clean state
+- [x] Write README from DECISIONS + transcripts (no invented numbers)
+- [x] `tests/test_repo_completeness.py`
+- [x] Full test suite
+- [x] Fresh-clone check (Verify #4)
+- [x] PROGRESS → done; commit
 
 ## Verify
 1. `uv run python -m credobot.demos.run_all` → exits 0; "network calls attempted: 0";

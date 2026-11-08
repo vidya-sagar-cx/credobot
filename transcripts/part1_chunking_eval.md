@@ -1,6 +1,6 @@
 # Part 1 — Chunking Strategy Evaluation
 
-- Generated: 2026-11-08T07:44:07.812070+00:00
+- Generated: 2026-11-08T10:12:31.875938+00:00
 - MOCK_LLM: True
 - CREWAI_DISABLE_TELEMETRY: true
 - OTEL_SDK_DISABLED: true
@@ -36,4 +36,4 @@
 
 ## Recommendation
 
-We recommend deploying `kb_fixed` for production retrieval. In our empirical evaluation across in-scope policy queries, `kb_sentence` achieved a macro-averaged Precision of 0.5833, Recall of 1.0000, and F1 score of 0.7368, compared to `kb_fixed` which achieved Precision of 0.8333, Recall of 1.0000, and F1 score of 0.9091. Sentence-level chunking produces clean syntactic boundaries that eliminate split phrases and guarantee that retrieved passages map cleanly to discrete policy clauses.
+We recommend deploying `kb_fixed` for production retrieval. In our empirical evaluation across in-scope policy queries, `kb_fixed` achieved a superior macro-averaged Precision of 0.8333, Recall of 1.0000, and F1 score of 0.9091, compared to `kb_sentence` which achieved Precision of 0.5833, Recall of 1.0000, and F1 score of 0.7368. Fixed-size chunking with character overlap consistently concentrates top-k retrieved chunks within the exact target policy documents, eliminating cross-document noise while preserving 100% recall.

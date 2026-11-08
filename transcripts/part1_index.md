@@ -1,6 +1,6 @@
 # Part 1 — Chunking & Indexing
 
-- Generated: 2026-11-08T07:34:39.830249+00:00
+- Generated: 2026-11-08T10:12:30.994701+00:00
 - MOCK_LLM: True
 - CREWAI_DISABLE_TELEMETRY: true
 - OTEL_SDK_DISABLED: true
