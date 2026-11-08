@@ -8,7 +8,7 @@ change log at the bottom.
 | Key | Value | Owner | Consumers | Notes |
 |---|---|---|---|---|
 | `python_version` | 3.12 | 00 | all | pinned in `.python-version` |
-| `pkg_versions` | TBD (crewai, autogen-agentchat, autogen-ext, chromadb, sentence-transformers, langchain-core, fastapi) | 00 | 07, 08, 13 | copy from `uv tree --depth 1`; planning-time check found crewai 1.15.33, autogen-agentchat 0.7.5, langchain-core 1.7.1 |
+| `pkg_versions` | crewai 1.15.37, autogen-agentchat 0.7.5, autogen-ext 0.7.5, chromadb 1.5.9, sentence-transformers 6.2.0, langchain-core 1.7.6, fastapi 0.162.2 | 00 | 07, 08, 13 | locked via uv sync |
 | `dataset_seed` | TBD | 01 | 06, 17 | |
 | `dataset_n` | TBD | 01 | 06, 17 | |
 | `category_weights` | TBD | 01 | 17 | |
@@ -38,3 +38,4 @@ change log at the bottom.
 ## Change log
 | Date | Plan | Change |
 |---|---|---|
+| 2026-11-08 | 00 | Record locked package versions |

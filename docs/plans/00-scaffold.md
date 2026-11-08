@@ -200,14 +200,14 @@ def isolated_env(tmp_path, monkeypatch):
   with `encoding="utf-8"`; file uses `\n` line endings.
 
 ## Steps
-- [ ] Create `.python-version`, `pyproject.toml`; run `uv add …` and `uv add --dev …`
-- [ ] Confirm import smoke test (Verify #2) passes on 3.12
-- [ ] Create `.gitattributes`, `.env.example`, update `.gitignore`
-- [ ] Create package skeleton (`__init__.py` in every sub-package)
-- [ ] Implement `config.py`, `counters.py`, `demos/transcript.py`
-- [ ] Create `tests/conftest.py`, `tests/test_config.py`
-- [ ] Run Verify; record `pkg_versions` in DECISIONS.md
-- [ ] Update PROGRESS row → `done`; commit
+- [x] Create `.python-version`, `pyproject.toml`; run `uv add …` and `uv add --dev …`
+- [x] Confirm import smoke test (Verify #2) passes on 3.12
+- [x] Create `.gitattributes`, `.env.example`, update `.gitignore`
+- [x] Create package skeleton (`__init__.py` in every sub-package)
+- [x] Implement `config.py`, `counters.py`, `demos/transcript.py`
+- [x] Create `tests/conftest.py`, `tests/test_config.py`
+- [x] Run Verify; record `pkg_versions` in DECISIONS.md
+- [x] Update PROGRESS row → `done`; commit
 
 ## Verify
 1. `uv sync` — succeeds, creates `.venv`.
