@@ -135,10 +135,10 @@ reuses it for the "revise" demo.
 - `test_low_similarity_refused` — OOS query hits → refused.
 
 ## Steps
-- [ ] `input_guard.py` + tests
-- [ ] `fixtures.py`, `output_guard.py`; calibrate `SUPPORT_THRESHOLD`; set in config
-- [ ] Demo + transcript
-- [ ] Verify; DECISIONS; PROGRESS; commit
+- [x] `input_guard.py` + tests
+- [x] `fixtures.py`, `output_guard.py`; calibrate `SUPPORT_THRESHOLD`; set in config
+- [x] Demo + transcript
+- [x] Verify; DECISIONS; PROGRESS; commit
 
 ## Verify
 1. `uv run python -m credobot.guardrails.output_guard` → two clusters + chosen threshold.

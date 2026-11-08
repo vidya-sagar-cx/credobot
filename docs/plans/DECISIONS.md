@@ -28,7 +28,7 @@ change log at the bottom.
 | `deploy_collection` | kb_fixed | 05 | 08, 09, 11, 14 | Selected via highest macro F1 (0.9091 vs 0.7368); also set in config.py |
 | `escalation_formula` | `0.55 * flagged_for_fraud_review + 0.45 * (days_since_created / 30 * (0.5 if status in {Rejected, Disbursed} else 1.0))` | 06 | 08, 17 | Designed composite score in [0, 1] balancing fraud urgency with SLA recency |
 | `escalation_threshold` | 0.55 | 06 | 08, 17 | Max(p80=0.473, 0.55); ensures fraud flag is necessary for escalation; escalates 12/60 (20.0%); p80 days=25.0 |
-| `support_threshold` | TBD (sentence-level groundedness) | 09 | 13, 16 | |
+| `support_threshold` | 0.81 | 09 | 13, 16 | Calibrated midpoint between min genuine extractive support (1.0000) and max unsupported claim similarity (0.6122) across deployed corpus |
 | `max_request_tokens` | TBD | 10 | 14, 15 | |
 | `max_request_cost_usd` | TBD | 10 | 14, 15 | |
 | `price_per_1k_tokens_usd` | TBD (nominal) | 10 | 14 | |
@@ -46,3 +46,5 @@ change log at the bottom.
 | 2026-11-08 | 05 | Record macro P/R/F1 results and set deploy_collection=kb_fixed |
 | 2026-11-08 | 06 | Record escalation formula, threshold=0.55, and distribution metrics |
 | 2026-11-08 | 07 | Implement MockLLM (BaseLLM) with ReAct loop, pitfall guards, and LLM factory |
+| 2026-11-08 | 08 | Sequential 3-agent CrewAI orchestration with RAG and LoanStatus tools, Pydantic response validation |
+| 2026-11-08 | 09 | Record support_threshold=0.81 calibrated against unsupported claims |

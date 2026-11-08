@@ -40,5 +40,6 @@ TOP_K: int = 3
 _idk_env = os.environ.get("IDK_THRESHOLD")
 IDK_THRESHOLD: float = float(_idk_env) if _idk_env else 0.29  # calibrated in plan 04
 DEPLOY_COLLECTION: str = os.environ.get("DEPLOY_COLLECTION", "kb_fixed")  # plan 05
-SUPPORT_THRESHOLD: float | None = None    # plan 09
+_support_env = os.environ.get("SUPPORT_THRESHOLD")
+SUPPORT_THRESHOLD: float = float(_support_env) if _support_env else 0.81  # plan 09
 

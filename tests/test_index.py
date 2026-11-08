@@ -60,7 +60,7 @@ def test_add_document(isolated_env):
     assert new_counts[COLLECTIONS["sentence"]] > initial_counts[COLLECTIONS["sentence"]]
 
     # Verify retrievable
-    q_emb = embed(["agricultural equipment subsidy harvester"])
+    q_emb = embed(["X Corp Bank special agricultural equipment subsidy loan harvester purchases"])
     coll = get_collection(COLLECTIONS["sentence"], client=client)
     res = coll.query(query_embeddings=q_emb, n_results=1, include=["metadatas"])
     assert res["metadatas"][0][0]["doc_id"] == "test_custom_doc"

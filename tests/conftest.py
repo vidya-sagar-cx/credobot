@@ -14,7 +14,10 @@ def _reset_counters():
 @pytest.fixture
 def isolated_env(tmp_path, monkeypatch):
     """Point Chroma and log dirs at tmp_path for tests that write state."""
+    from credobot.rag.index import _client_cache
+    _client_cache.clear()
     monkeypatch.setattr(config, "CHROMA_DIR", tmp_path / "chroma")
     monkeypatch.setattr(config, "LOG_DIR", tmp_path / "logs")
-    return tmp_path
+    yield tmp_path
+    _client_cache.clear()
 
