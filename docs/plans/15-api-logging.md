@@ -152,12 +152,12 @@ Uses `fastapi.testclient.TestClient(app)` (no server needed):
   strings not in the log file bytes.
 
 ## Steps
-- [ ] `models.py`, `logging_mw.py` (+ unit test for `log_entry` masking)
-- [ ] `app.py` HTTP endpoints
-- [ ] WebSocket endpoint + disconnect handling
-- [ ] `ws_client.py`, `demo.py` → transcript
-- [ ] Tests; manual uvicorn check
-- [ ] Verify; PROGRESS; commit
+- [x] `models.py`, `logging_mw.py` (+ unit test for `log_entry` masking)
+- [x] `app.py` HTTP endpoints
+- [x] WebSocket endpoint + disconnect handling
+- [x] `ws_client.py`, `demo.py` → transcript
+- [x] Tests; manual uvicorn check
+- [x] Verify; PROGRESS; commit
 
 ## Verify
 1. `uv run pytest tests/test_api.py -q` → pass.

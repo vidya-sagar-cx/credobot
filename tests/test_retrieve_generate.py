@@ -1,15 +1,15 @@
 """Unit and integration tests for retrieval and grounded generation."""
 from credobot import config, counters
 from credobot.rag.generate import IDK_MESSAGE, grounded_answer
-from credobot.rag.index import COLLECTIONS, build_index, get_client
+from credobot.rag.index import COLLECTIONS, ensure_index, get_client
 from credobot.rag.kb import split_sentences
 from credobot.rag.queries import IN_SCOPE, OUT_OF_SCOPE
 from credobot.rag.retrieve import retrieve, top1_similarity
 
 
-def test_retrieve_sorted_and_bounded(isolated_env):
-    client = get_client(isolated_env / "chroma")
-    build_index(client=client)
+def test_retrieve_sorted_and_bounded():
+    ensure_index()
+    client = get_client()
 
     hits = retrieve("How is EMI calculated?", collection=COLLECTIONS["sentence"], k=3, client=client)
     assert len(hits) == 3
@@ -19,9 +19,9 @@ def test_retrieve_sorted_and_bounded(isolated_env):
         assert hits[i].similarity >= hits[i + 1].similarity
 
 
-def test_retrieve_counts_chroma_query(isolated_env):
-    client = get_client(isolated_env / "chroma")
-    build_index(client=client)
+def test_retrieve_counts_chroma_query():
+    ensure_index()
+    client = get_client()
 
     counters.reset("chroma.query")
     assert counters.get("chroma.query") == 0
@@ -29,9 +29,9 @@ def test_retrieve_counts_chroma_query(isolated_env):
     assert counters.get("chroma.query") == 1
 
 
-def test_threshold_separates_clusters(isolated_env):
-    client = get_client(isolated_env / "chroma")
-    build_index(client=client)
+def test_threshold_separates_clusters():
+    ensure_index()
+    client = get_client()
 
     threshold = config.IDK_THRESHOLD
     assert threshold is not None
@@ -48,9 +48,9 @@ def test_threshold_separates_clusters(isolated_env):
             assert sim < threshold, f"Out-of-scope query '{q}' in {coll_name} sim {sim} >= {threshold}"
 
 
-def test_in_scope_answer_grounded(isolated_env):
-    client = get_client(isolated_env / "chroma")
-    build_index(client=client)
+def test_in_scope_answer_grounded():
+    ensure_index()
+    client = get_client()
 
     for q, _ in IN_SCOPE:
         ans = grounded_answer(q, collection=COLLECTIONS["sentence"], client=client)
@@ -66,9 +66,9 @@ def test_in_scope_answer_grounded(isolated_env):
             assert found, f"Answer sentence '{s}' not found verbatim in any context hit"
 
 
-def test_out_of_scope_fallback(isolated_env):
-    client = get_client(isolated_env / "chroma")
-    build_index(client=client)
+def test_out_of_scope_fallback():
+    ensure_index()
+    client = get_client()
 
     counters.reset("llm.generate")
     oos_q = OUT_OF_SCOPE[0]

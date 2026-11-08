@@ -47,7 +47,7 @@ def mask_pii(text: str) -> MaskResult:
 
 INJECTION_PATTERNS: list[str] = [
     r"ignore (all |any )?(previous|prior|above) (instructions|rules|prompts?)",
-    r"disregard (the |your )?(system|previous) (prompt|instructions)",
+    r"disregard (all |any |the |your )?(system|previous|prior|above) (prompt|instructions|rules?)",
     r"(reveal|show|print|repeat) (me )?(your|the) (system prompt|hidden instructions|instructions)",
     r"\byou are now\b",
     r"\b(dan|developer mode|jailbreak)\b",
