@@ -76,10 +76,10 @@ def split_sentences(text: str) -> list[str]:
 - `test_split_sentences_basic` — `"A b. C d! E f?"` → 3 sentences; `"₹10,000 fee. Next."` → 2.
 
 ## Steps
-- [ ] Write the 13 kb files
-- [ ] Implement `credobot/rag/kb.py`
-- [ ] Write tests; run Verify
-- [ ] Record `kb_doc_ids`; update PROGRESS; commit
+- [x] Write the 13 kb files
+- [x] Implement `credobot/rag/kb.py`
+- [x] Write tests; run Verify
+- [x] Record `kb_doc_ids`; update PROGRESS; commit
 
 ## Verify
 1. `uv run pytest tests/test_kb.py -q` → pass.

@@ -16,7 +16,7 @@ change log at the bottom.
 | `amount_ranges_inr` | Personal: ₹50k-₹25L, Home: ₹10L-₹1.5Cr, Auto: ₹2L-₹30L, Education: ₹1L-₹40L, Business: ₹5L-₹2Cr | 01 | 17 | Ranges mirror typical Indian retail-bank product limits: unsecured personal loans up to ₹25 lakh, home loans ₹10 lakh–₹1.5 crore, vehicle loans up to ₹30 lakh, education up to ₹40 lakh and MSME business loans up to ₹2 crore. |
 | `fraud_probability` | 0.18 | 01 | 17 | Yields 20.0% fraud review rate |
 | `dataset_stats` | Categories: Personal=22, Auto=12, Home=11, Business=9, Education=6; Statuses: Under Review=22, Approved=15, Disbursed=10, Rejected=7, Submitted=6; Fraud: 12/60 (20.0%) | 01 | 17 | All categories >= 3; all statuses >= 1; fraud % in [10%, 30%] |
-| `kb_doc_ids` | TBD | 02 | 03, 05, 16 | list of filenames without `.md` |
+| `kb_doc_ids` | account_closure, credit_card_fees, credit_score_factors, emi_calculation, fraud_dispute, interest_rate_slabs, joint_accounts, kyc_documents, loan_application_process, loan_eligibility, minimum_balance, nri_accounts, prepayment_penalty | 02 | 03, 05, 16 | 13 documents (12 required topics + 1 loan application lifecycle) |
 | `embed_model` | sentence-transformers/all-MiniLM-L6-v2 | 03 | 04, 09 | |
 | `fixed_chunk_params` | TBD (size/overlap chars) | 03 | 05, 17 | |
 | `sentence_chunk_params` | TBD (max sentences) | 03 | 05, 17 | |
@@ -40,3 +40,4 @@ change log at the bottom.
 |---|---|---|
 | 2026-11-08 | 00 | Record locked package versions |
 | 2026-11-08 | 01 | Record dataset seed, weights, ranges, rationale, and stats |
+| 2026-11-08 | 02 | Record 13 kb_doc_ids |
