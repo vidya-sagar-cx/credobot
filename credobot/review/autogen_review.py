@@ -31,7 +31,7 @@ def build_team(
         name="policy_compliance_reviewer",
         model_client=reviewer_client or factory.get_autogen_client("reviewer"),
         system_message=(
-            "You are X Corp's policy-compliance reviewer. List every claim in the draft "
+            "You are CRED's policy-compliance reviewer. List every claim in the draft "
             "that the context does not support. Reply 'REVIEW: PASS' or 'REVIEW: FAIL' "
             "followed by UNSUPPORTED bullet points."
         ),

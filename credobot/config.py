@@ -35,7 +35,7 @@ EMBED_MODEL: str = os.environ.get("EMBED_MODEL", "sentence-transformers/all-Mini
 LLM_MODEL: str = os.environ.get("LLM_MODEL", "gpt-4o-mini")
 OPENAI_BASE_URL: str | None = os.environ.get("OPENAI_BASE_URL") or None
 
-# Filled in by later plans (values recorded in docs/plans/DECISIONS.md):
+# Measured values recorded in docs/DECISIONS.md:
 TOP_K: int = 3
 _idk_env = os.environ.get("IDK_THRESHOLD")
 IDK_THRESHOLD: float = float(_idk_env) if _idk_env else 0.29  # calibrated in plan 04

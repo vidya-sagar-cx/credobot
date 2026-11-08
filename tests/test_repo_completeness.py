@@ -52,7 +52,7 @@ def test_all_transcripts_exist():
 
 
 def test_decisions_no_tbd():
-    decisions_path = Path("docs/plans/DECISIONS.md")
+    decisions_path = Path("docs/DECISIONS.md")
     assert decisions_path.exists()
     content = decisions_path.read_text(encoding="utf-8")
     lines = content.splitlines()

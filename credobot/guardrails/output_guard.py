@@ -8,7 +8,7 @@ from credobot.rag.kb import split_sentences
 from credobot.rag.retrieve import Hit
 
 REFUSAL_UNGROUNDED: str = (
-    "I can't answer that reliably from X Corp's policy documents, so I won't guess. "
+    "I can't answer that reliably from CRED's policy documents, so I won't guess. "
     "Please contact lending operations."
 )
 

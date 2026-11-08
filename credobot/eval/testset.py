@@ -28,7 +28,7 @@ TEST_SET: list[EvalCase] = [
     ),
     EvalCase(
         id="Q02",
-        query="How does X Corp Bank calculate the EMI on a loan?",
+        query="How does CRED calculate the EMI on a loan?",
         topic="EMI calculation rules",
         kind="in_scope",
         relevant_docs=frozenset(["emi_calculation"]),

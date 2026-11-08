@@ -17,7 +17,7 @@ class LoanStatusInput(BaseModel):
 
 class RagLookupTool(BaseTool):
     name: str = "rag_lookup"
-    description: str = "Search the X Corp policy knowledge base and return a grounded answer."
+    description: str = "Search the CRED policy knowledge base and return a grounded answer."
     args_schema: type[BaseModel] = RagLookupInput
     allowed_role: str = "Retrieval Agent"
     bound_role: str = "Retrieval Agent"

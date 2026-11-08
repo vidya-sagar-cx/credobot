@@ -85,7 +85,7 @@ def main() -> int:
     # -------------------------------------------------------------
     t.h2("4. Dynamic Document Ingestion (`POST /add-document`)")
     doc_text = (
-        "X Corp Bank branch customer service counters operate from 09:30 AM to 04:30 PM on all "
+        "CRED branch customer service counters operate from 09:30 AM to 04:30 PM on all "
         "weekdays. Extended evening advisory support is available until 07:00 PM on the first and "
         "third Thursday of every month for mortgage consultations."
     )

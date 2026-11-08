@@ -1,6 +1,6 @@
 # Part 4 — AI Governance & Risk Management
 
-- Generated: 2026-11-08T10:12:36.438349+00:00
+- Generated: 2026-11-08T10:38:29.781980+00:00
 - MOCK_LLM: True
 - CREWAI_DISABLE_TELEMETRY: true
 - OTEL_SDK_DISABLED: true

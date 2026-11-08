@@ -61,7 +61,7 @@ COMPILED_INJECTIONS: list[re.Pattern] = [
 ]
 
 REFUSAL_INJECTION: str = (
-    "I can't help with that request. I can answer X Corp loan-policy questions or check an application's status."
+    "I can't help with that request. I can answer CRED loan-policy questions or check an application's status."
 )
 
 

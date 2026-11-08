@@ -1,6 +1,6 @@
 # Part 2 — CrewAI Multi-Agent Orchestration
 
-- Generated: 2026-11-08T10:12:35.101263+00:00
+- Generated: 2026-11-08T10:38:28.402865+00:00
 - MOCK_LLM: True
 - CREWAI_DISABLE_TELEMETRY: true
 - OTEL_SDK_DISABLED: true
@@ -28,7 +28,7 @@ A 3-agent sequential CrewAI crew (Retrieval Agent → Lookup Agent → Response 
 **Retrieval Agent Output:**
 
 ```json
-{"answer": "card, passport, voter identity card, or driving licence. Customers must also provide one officially valid document as verified proof of identity and current residential address, such as an Aadhaar card, passport, voter identity card, or driving licence.", "sources": ["kyc_documents"], "grounded": true, "fallback": false, "top_similarity": 0.4085, "cache_hit": false, "context": [{"chunk_id": "fixed:kyc_documents:003", "doc_id": "kyc_documents", "text": "ity bill or municipal tax receipt dated within the prior three months. Under regulatory compliance standards, re-KYC profile reviews are mandatorily scheduled every two years for high-risk customers, every", "similarity": 0.4085}, {"chunk_id": "fixed:kyc_documents:002", "doc_id": "kyc_documents", "text": "card, passport, voter identity card, or driving licence. Current residential address verification can additionally be substantiated with a recent utility bill or municipal tax receipt dated within the", "similarity": 0.4059}, {"chunk_id": "fixed:kyc_documents:001", "doc_id": "kyc_documents", "text": "laration. Customers must also provide one officially valid document as verified proof of identity and current residential address, such as an Aadhaar card, passport, voter identity card, or driving licence.", "similarity": 0.3963}]}
+{"answer": "Customers must also provide one officially valid document as verified proof of identity and current residential address, such as an Aadhaar card, passport, voter identity card, or driving licence. assport, voter identity card, or driving licence.", "sources": ["kyc_documents"], "grounded": true, "fallback": false, "top_similarity": 0.4565, "cache_hit": false, "context": [{"chunk_id": "fixed:kyc_documents:001", "doc_id": "kyc_documents", "text": "n. Customers must also provide one officially valid document as verified proof of identity and current residential address, such as an Aadhaar card, passport, voter identity card, or driving licence. Current", "similarity": 0.4565}, {"chunk_id": "fixed:kyc_documents:003", "doc_id": "kyc_documents", "text": "l or municipal tax receipt dated within the prior three months. Under regulatory compliance standards, re-KYC profile reviews are mandatorily scheduled every two years for high-risk customers, every eight", "similarity": 0.4016}, {"chunk_id": "fixed:kyc_documents:002", "doc_id": "kyc_documents", "text": "assport, voter identity card, or driving licence. Current residential address verification can additionally be substantiated with a recent utility bill or municipal tax receipt dated within the prior three", "similarity": 0.3297}]}
 ```
 
 **Lookup Agent Output:**
@@ -41,7 +41,7 @@ NO_RECORD_ID
 
 ```json
 {
-  "answer": "card, passport, voter identity card, or driving licence. Customers must also provide one officially valid document as verified proof of identity and current residential address, such as an Aadhaar card, passport, voter identity card, or driving licence.",
+  "answer": "Customers must also provide one officially valid document as verified proof of identity and current residential address, such as an Aadhaar card, passport, voter identity card, or driving licence. assport, voter identity card, or driving licence.",
   "intent": "policy",
   "sources": [
     "kyc_documents"
@@ -49,7 +49,7 @@ NO_RECORD_ID
   "record": null,
   "escalate": false,
   "grounded": true,
-  "top_similarity": 0.4085,
+  "top_similarity": 0.4565,
   "guardrail_events": []
 }
 ```
@@ -73,7 +73,7 @@ NO_RECORD_ID
 **Retrieval Agent Output:**
 
 ```json
-{"answer": "The loan application lifecycle at X Corp Bank transitions sequentially across five formal operational statuses comprising Submitted, Under Review, Approved, Rejected, and Disbursed. Clear applications progress to Approved and reach Disbursed within 48 hours, while complex cases require managerial escalation to", "sources": ["loan_application_process", "loan_eligibility"], "grounded": true, "fallback": false, "top_similarity": 0.3575, "cache_hit": false, "context": [{"chunk_id": "fixed:loan_application_process:000", "doc_id": "loan_application_process", "text": "The loan application lifecycle at X Corp Bank transitions sequentially across five formal operational statuses comprising Submitted, Under Review, Approved, Rejected, and Disbursed. An application logged", "similarity": 0.3575}, {"chunk_id": "fixed:loan_application_process:003", "doc_id": "loan_application_process", "text": "file is flagged for fraud review and held pending compliance inspection. Clear applications progress to Approved and reach Disbursed within 48 hours, while complex cases require managerial escalation to", "similarity": 0.3279}, {"chunk_id": "fixed:loan_eligibility:004", "doc_id": "loan_eligibility", "text": "y program with a creditworthy co-applicant, whereas MSME Business Loans require at least three years of audited business operations and a minimum annual turnover of \u20b930,00,000.", "similarity": 0.2936}]}
+{"answer": "The loan application lifecycle at CRED transitions sequentially across five formal operational statuses comprising Submitted, Under Review, Approved, Rejected, and Disbursed. An application logged as Submitted", "sources": ["loan_application_process", "prepayment_penalty"], "grounded": true, "fallback": false, "top_similarity": 0.3703, "cache_hit": false, "context": [{"chunk_id": "fixed:loan_application_process:000", "doc_id": "loan_application_process", "text": "The loan application lifecycle at CRED transitions sequentially across five formal operational statuses comprising Submitted, Under Review, Approved, Rejected, and Disbursed. An application logged as Submitted", "similarity": 0.3703}, {"chunk_id": "fixed:loan_application_process:001", "doc_id": "loan_application_process", "text": "Rejected, and Disbursed. An application logged as Submitted enters initial document intake, moving to Under Review within two to four business days as lending officers examine borrower credentials. If", "similarity": 0.3025}, {"chunk_id": "fixed:prepayment_penalty:004", "doc_id": "prepayment_penalty", "text": "rge of up to 3 percent of the outstanding facility balance.", "similarity": 0.2826}]}
 ```
 
 **Lookup Agent Output:**
@@ -101,7 +101,7 @@ NO_RECORD_ID
   },
   "escalate": true,
   "grounded": true,
-  "top_similarity": 0.3575,
+  "top_similarity": 0.3703,
   "guardrail_events": []
 }
 ```
@@ -125,7 +125,7 @@ NO_RECORD_ID
 **Retrieval Agent Output:**
 
 ```json
-{"answer": "Fixed-rate retail loans entail a prepayment fee of 2 percent on the prepaid principal sum if the repayment occurs after the mandatory six-month initial lock-in period. Borrowers may not execute partial prepayment during the first six months from disbursal to preserve initial loan underwriting costs.", "sources": ["prepayment_penalty"], "grounded": true, "fallback": false, "top_similarity": 0.5355, "cache_hit": false, "context": [{"chunk_id": "fixed:prepayment_penalty:001", "doc_id": "prepayment_penalty", "text": "prepayments. Fixed-rate retail loans entail a prepayment fee of 2 percent on the prepaid principal sum if the repayment occurs after the mandatory six-month initial lock-in period. Borrowers may not execute", "similarity": 0.5355}, {"chunk_id": "fixed:prepayment_penalty:002", "doc_id": "prepayment_penalty", "text": "x-month initial lock-in period. Borrowers may not execute partial prepayment during the first six months from disbursal to preserve initial loan underwriting costs. Commercial and corporate business term", "similarity": 0.5334}, {"chunk_id": "fixed:prepayment_penalty:000", "doc_id": "prepayment_penalty", "text": "Individual borrowers holding floating-rate retail loans with X Corp Bank are subject to nil prepayment penalties when making partial or full principal prepayments. Fixed-rate retail loans entail a prepayment", "similarity": 0.5189}]}
+{"answer": "Borrowers may not execute partial prepayment during the first six months from disbursal to preserve initial loan underwriting costs. Individual borrowers holding floating-rate retail loans with CRED are subject to nil prepayment penalties when making partial or full principal prepayments.", "sources": ["prepayment_penalty"], "grounded": true, "fallback": false, "top_similarity": 0.5667, "cache_hit": false, "context": [{"chunk_id": "fixed:prepayment_penalty:002", "doc_id": "prepayment_penalty", "text": "initial lock-in period. Borrowers may not execute partial prepayment during the first six months from disbursal to preserve initial loan underwriting costs. Commercial and corporate business term loans", "similarity": 0.5667}, {"chunk_id": "fixed:prepayment_penalty:000", "doc_id": "prepayment_penalty", "text": "Individual borrowers holding floating-rate retail loans with CRED are subject to nil prepayment penalties when making partial or full principal prepayments. Fixed-rate retail loans entail a prepayment", "similarity": 0.5396}, {"chunk_id": "fixed:prepayment_penalty:003", "doc_id": "prepayment_penalty", "text": "costs. Commercial and corporate business term loans remain exempt from the retail zero-penalty waiver and attract a contractual early termination charge of up to 3 percent of the outstanding facility", "similarity": 0.5067}]}
 ```
 
 **Lookup Agent Output:**
@@ -138,7 +138,7 @@ NO_RECORD_ID
 
 ```json
 {
-  "answer": "Fixed-rate retail loans entail a prepayment fee of 2 percent on the prepaid principal sum if the repayment occurs after the mandatory six-month initial lock-in period. Borrowers may not execute partial prepayment during the first six months from disbursal to preserve initial loan underwriting costs.\n\nApplication LA-1001 (Personal Loan, ₹2,197,000) is Approved. Escalation score 0.30 — standard processing SLA applies.",
+  "answer": "Borrowers may not execute partial prepayment during the first six months from disbursal to preserve initial loan underwriting costs. Individual borrowers holding floating-rate retail loans with CRED are subject to nil prepayment penalties when making partial or full principal prepayments.\n\nApplication LA-1001 (Personal Loan, ₹2,197,000) is Approved. Escalation score 0.30 — standard processing SLA applies.",
   "intent": "mixed",
   "sources": [
     "prepayment_penalty"
@@ -155,7 +155,7 @@ NO_RECORD_ID
   },
   "escalate": false,
   "grounded": true,
-  "top_similarity": 0.5355,
+  "top_similarity": 0.5667,
   "guardrail_events": []
 }
 ```

@@ -170,7 +170,7 @@ class MockLLM(BaseLLM):
             final_text = (
                 rag_answer
                 if rag_answer
-                else "I don't know — the X Corp policy knowledge base doesn't cover that. Please contact lending operations."
+                else "I don't know — the CRED policy knowledge base doesn't cover that. Please contact lending operations."
             )
             final_grounded = False
 

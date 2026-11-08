@@ -2,10 +2,10 @@
 
 **Track: Finance (Banking & FinTech)**
 
-CredoBot is an enterprise-grade loan-support agent built for X Corp's lending-operations team. It answers complex retail banking loan-policy queries, inspects loan application records with an empirical escalation formula, maintains conversation context across turns, defends against adversarial prompts and PII leakage, validates every generated draft through an independent multi-agent review team, and enforces a multi-layered AI governance framework.
+CredoBot is an enterprise-grade loan-support agent built for CRED's lending-operations team. It answers complex retail banking loan-policy queries, inspects loan application records with an empirical escalation formula, maintains conversation context across turns, defends against adversarial prompts and PII leakage, validates every generated draft through an independent multi-agent review team, and enforces a multi-layered AI governance framework.
 
 ### Architecture Overview
-The runtime operates as a 7-stage pipeline:
+The runtime operates as a 7-stage pipeline (detailed in [`architecture.md`](architecture.md) with complete Mermaid flows):
 1. **Request Budget & Governance Gate:** Checks estimated token count and dollar cost against configured ceilings (`max_request_tokens=6000`, `max_request_cost_usd=$0.01`); enforces tool Access Control Lists (least autonomy).
 2. **Input Guardrails:** Detects and blocks adversarial prompt injections; redacts fixed-format PII (PAN, Aadhaar, Account numbers) with synthetic masks before model exposure.
 3. **Session Memory:** Rehydrates conversation history via LangChain message stores; rewrites follow-up queries with antecedent context.
@@ -14,6 +14,9 @@ The runtime operates as a 7-stage pipeline:
 6. **Output Guardrails:** Validates groundedness against retrieved context via cosine entailment checks (`SUPPORT_THRESHOLD=0.81`), refusing ungrounded assertions.
 7. **AutoGen Review Stage:** 2-agent `RoundRobinGroupChat` (`PolicyComplianceReviewer` and `FinalEditor`, `max_turns=2`) verifying factual consistency and outputting a validated `ReviewVerdict` (approving or revising the draft).
 8. **Structured JSONL Audit Logging:** Writes single-line JSONL audit logs with unique trace IDs, execution durations, and masked PII.
+
+> For visual diagrams, sequence flows, and component-by-component specifications, see [`architecture.md`](architecture.md).
+> For onboarding, developer commands, and contribution rules, see [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
 ---
 
@@ -196,9 +199,9 @@ Every HTTP and WebSocket interaction logs a single JSONL audit entry with:
 
 ### 13. LLM-as-Judge Evaluation (15 Queries)
 A 15-case test set covering all 12 required KB topics plus 3 edge/OOS cases evaluated by a deterministic judge:
-- **Macro Accuracy:** `0.7447`
+- **Macro Accuracy:** `0.7660`
 - **Macro Grounding:** `1.0000`
-- **Macro Completeness:** `0.5553`
+- **Macro Completeness:** `0.6007`
 - **Macro Safety:** `1.0000`
 - Total Evaluated Queries: 15 / 15
 *See [`transcripts/part3_eval.md`](transcripts/part3_eval.md) and [`transcripts/part3_eval.jsonl`](transcripts/part3_eval.jsonl).*
@@ -263,5 +266,11 @@ uv run pytest -q
 
 ---
 
-## AI-Agent Development Workflow
-This project was implemented following an incremental 7-step plan execution protocol documented in [`AGENTS.md`](AGENTS.md). All 18 engineering plans and measured decisions are archived in [`docs/plans/`](docs/plans/).
+## Project Documentation & Architecture
+- [System Architecture & Mermaid Flows (`architecture.md`)](architecture.md)
+- [New Member Onboarding & Contribution Guide (`CONTRIBUTING.md`)](CONTRIBUTING.md)
+- [Technical Synthesis & Executive Report (`docs/REPORT.md`)](docs/REPORT.md)
+- [Empirical Parameters & Measured Decisions (`docs/DECISIONS.md`)](docs/DECISIONS.md)
+- [Environment Setup Guide (`docs/SETUP.md`)](docs/SETUP.md)
+- [Project Requirements Brief (`docs/BRIEF.md`)](docs/BRIEF.md)
+

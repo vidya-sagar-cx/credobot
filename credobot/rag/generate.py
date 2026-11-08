@@ -11,7 +11,7 @@ from credobot.rag.queries import IN_SCOPE, OUT_OF_SCOPE
 from credobot.rag.retrieve import Hit, retrieve, top1_similarity
 
 IDK_MESSAGE: str = (
-    "I don't know — the X Corp policy knowledge base doesn't cover that. "
+    "I don't know — the CRED policy knowledge base doesn't cover that. "
     "Please contact lending operations."
 )
 
@@ -33,7 +33,7 @@ def build_prompt(query: str, hits: list[Hit]) -> str:
         f"[{i+1}] (Source: {h.doc_id})\n{h.text}" for i, h in enumerate(hits)
     )
     return (
-        "You are an assistant answering policy queries for X Corp Bank.\n"
+        "You are an assistant answering policy queries for CRED.\n"
         "Answer ONLY using the context below. If the context does not contain the answer, "
         f"reply exactly: '{IDK_MESSAGE}'.\n\n"
         f"Context:\n{context_blocks}\n\n"

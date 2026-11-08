@@ -40,8 +40,8 @@ def test_missing_custom_message_types_fails():
 
 def test_approve_unchanged():
     """Clean draft supported by context is approved unchanged."""
-    context = ["Under X Corp policy, personal loan tenure ranges from 12 to 60 months."]
-    draft = "Under X Corp policy, personal loan tenure ranges from 12 to 60 months."
+    context = ["Under CRED policy, personal loan tenure ranges from 12 to 60 months."]
+    draft = "Under CRED policy, personal loan tenure ranges from 12 to 60 months."
     res = review(draft=draft, context=context)
     assert res.verdict.approved is True
     assert res.verdict.final_answer == draft
@@ -51,8 +51,8 @@ def test_approve_unchanged():
 
 def test_revise_injected_claim():
     """Draft with an unsupported claim is revised with the claim stripped."""
-    context = ["Under X Corp policy, personal loan tenure ranges from 12 to 60 months."]
-    clean_draft = "Under X Corp policy, personal loan tenure ranges from 12 to 60 months."
+    context = ["Under CRED policy, personal loan tenure ranges from 12 to 60 months."]
+    clean_draft = "Under CRED policy, personal loan tenure ranges from 12 to 60 months."
     injected = UNSUPPORTED_CLAIMS[0]
     draft = f"{clean_draft} {injected}"
 

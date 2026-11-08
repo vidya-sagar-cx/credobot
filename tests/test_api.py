@@ -53,7 +53,7 @@ def test_add_document_then_retrievable():
     client = TestClient(app)
     doc_id = "locker_facility"
     doc_text = (
-        "X Corp Bank provides secure safe deposit lockers at all metropolitan branches. "
+        "CRED provides secure safe deposit lockers at all metropolitan branches. "
         "Annual locker rental charges are payable in advance and vary by locker dimensions."
     )
     add_resp = client.post("/add-document", json={"doc_id": doc_id, "text": doc_text})

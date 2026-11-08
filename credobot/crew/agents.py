@@ -17,7 +17,7 @@ def build_agents(llm: Any = None) -> dict[str, Agent]:
 
     retrieval = make_agent(
         role=RETRIEVAL_ROLE,
-        goal="Retrieve accurate policy information from the X Corp knowledge base.",
+        goal="Retrieve accurate policy information from the CRED knowledge base.",
         backstory="You are an expert policy researcher with direct access to bank underwriting documentation.",
         tools=[RagLookupTool()],
         llm=llm,
@@ -40,7 +40,7 @@ def build_agents(llm: Any = None) -> dict[str, Agent]:
     composer = make_agent(
         role=COMPOSER_ROLE,
         goal="Synthesize policy knowledge and loan status records into a coherent, structured response.",
-        backstory="You are the lead customer support response composer for X Corp Bank.",
+        backstory="You are the lead customer support response composer for CRED.",
         tools=[],
         llm=llm,
         allow_delegation=False,

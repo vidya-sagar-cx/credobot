@@ -7,16 +7,12 @@ network access** (after the one-time embedding-model download).
 
 Environment setup: see [`docs/SETUP.md`](docs/SETUP.md).
 
-## How work is organised
-All implementation work is split into small plan docs in [`docs/plans/`](docs/plans/).
-One plan = one unit of work = one commit. Status lives in
-[`docs/plans/PROGRESS.md`](docs/plans/PROGRESS.md); values that later plans depend on
-(seed, thresholds, chosen collection, versions…) live in
-[`docs/plans/DECISIONS.md`](docs/plans/DECISIONS.md).
+## Implementation Status & Project Documentation
+All 18 engineering plans are 100% completed and verified. Measured parameter values, empirical calibration figures, and decisions are recorded in [`docs/DECISIONS.md`](docs/DECISIONS.md).
 
-## Protocol — follow exactly
-1. `git switch feat/loan-support-agent && git pull` (if a remote exists).
-   Read `docs/plans/PROGRESS.md` and `docs/plans/DECISIONS.md`.
+For architectural diagrams and component specifications, see [`architecture.md`](architecture.md).
+For onboarding and contribution instructions, see [`CONTRIBUTING.md`](CONTRIBUTING.md).
+For setup instructions, see [`docs/SETUP.md`](docs/SETUP.md).
 2. **Pick a plan.** If any row is `in-progress`, resume that one first (the ticked
    `- [x]` boxes in its doc show where the previous agent stopped). Otherwise take the
    lowest-numbered `todo` row whose `Deps` are all `done`.

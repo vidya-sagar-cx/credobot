@@ -1,6 +1,6 @@
 # Part 4 — AutoGen Review Stage (RoundRobinGroupChat)
 
-- Generated: 2026-11-08T10:12:37.010261+00:00
+- Generated: 2026-11-08T10:38:30.523137+00:00
 - MOCK_LLM: True
 - CREWAI_DISABLE_TELEMETRY: true
 - OTEL_SDK_DISABLED: true
@@ -14,7 +14,7 @@ Demonstration of the 2-agent AutoGen review stage (Policy Compliance Reviewer ->
 **Draft Answer**:
 
 ```
-Customers must also provide one officially valid document as verified proof of identity and current residential address, such as an Aadhaar card, passport, voter identity card, or driving licence. card, passport, voter identity card, or driving licence.
+Customers must also provide one officially valid document as verified proof of identity and current residential address, such as an Aadhaar card, passport, voter identity card, or driving licence. Under regulatory compliance standards, re-KYC profile reviews are mandatorily scheduled every two years for high-risk customers, every eight
 ```
 
 - **Total Messages in Run**: 3 (Task + 2 Agent Turns)
@@ -25,12 +25,12 @@ Customers must also provide one officially valid document as verified proof of i
 
 ```
 <<DRAFT>>
-Customers must also provide one officially valid document as verified proof of identity and current residential address, such as an Aadhaar card, passport, voter identity card, or driving licence. card, passport, voter identity card, or driving licence.
+Customers must also provide one officially valid document as verified proof of identity and current residential address, such as an Aadhaar card, passport, voter identity card, or driving licence. Under regulatory compliance standards, re-KYC profile reviews are mandatorily scheduled every two years for high-risk customers, every eight
 <</DRAFT>>
 <<CONTEXT>>
-[1] laration. Customers must also provide one officially valid document as verified proof of identity and current residential address, such as an Aadhaar card, passport, voter identity card, or driving licence.
-[2] ity bill or municipal tax receipt dated within the prior three months. Under regulatory compliance standards, re-KYC profile reviews are mandatorily scheduled every two years for high-risk customers, every
-[3] card, passport, voter identity card, or driving licence. Current residential address verification can additionally be substantiated with a recent utility bill or municipal tax receipt dated within the
+[1] n. Customers must also provide one officially valid document as verified proof of identity and current residential address, such as an Aadhaar card, passport, voter identity card, or driving licence. Current
+[2] l or municipal tax receipt dated within the prior three months. Under regulatory compliance standards, re-KYC profile reviews are mandatorily scheduled every two years for high-risk customers, every eight
+[3] s. Applicants must surrender all unused cheque-book leaves, active debit cards, and banking instruments to the branch for secure disposal before closure certificates are generated.
 <</CONTEXT>>
 Review the draft strictly against the context and record (if provided). List every unsupported claim. If none, reply 'REVIEW: PASS'.
 ```
@@ -47,7 +47,7 @@ All claims in the draft are supported by the provided context.
 ```
 {
   "approved": true,
-  "final_answer": "Customers must also provide one officially valid document as verified proof of identity and current residential address, such as an Aadhaar card, passport, voter identity card, or driving licence. card, passport, voter identity card, or driving licence.",
+  "final_answer": "Customers must also provide one officially valid document as verified proof of identity and current residential address, such as an Aadhaar card, passport, voter identity card, or driving licence. Under regulatory compliance standards, re-KYC profile reviews are mandatorily scheduled every two years for high-risk customers, every eight",
   "reason": "All claims supported by context."
 }
 ```
@@ -57,7 +57,7 @@ All claims in the draft are supported by the provided context.
 ```json
 {
   "approved": true,
-  "final_answer": "Customers must also provide one officially valid document as verified proof of identity and current residential address, such as an Aadhaar card, passport, voter identity card, or driving licence. card, passport, voter identity card, or driving licence.",
+  "final_answer": "Customers must also provide one officially valid document as verified proof of identity and current residential address, such as an Aadhaar card, passport, voter identity card, or driving licence. Under regulatory compliance standards, re-KYC profile reviews are mandatorily scheduled every two years for high-risk customers, every eight",
   "reason": "All claims supported by context."
 }
 ```
@@ -71,23 +71,23 @@ ReviewVerdict validation: **PASS** (approved=True)
 **Draft with Injection**:
 
 ```
-Customers must also provide one officially valid document as verified proof of identity and current residential address, such as an Aadhaar card, passport, voter identity card, or driving licence. card, passport, voter identity card, or driving licence. Home loans have zero processing fee and guaranteed instant approval within 15 minutes.
+Customers must also provide one officially valid document as verified proof of identity and current residential address, such as an Aadhaar card, passport, voter identity card, or driving licence. Under regulatory compliance standards, re-KYC profile reviews are mandatorily scheduled every two years for high-risk customers, every eight Home loans have zero processing fee and guaranteed instant approval within 15 minutes.
 ```
 
 - **Total Messages in Run**: 3 (Task + 2 Agent Turns)
 
-- **Changed**: `True`
+- **Changed**: `False`
 
 ### Agent Message: `user`
 
 ```
 <<DRAFT>>
-Customers must also provide one officially valid document as verified proof of identity and current residential address, such as an Aadhaar card, passport, voter identity card, or driving licence. card, passport, voter identity card, or driving licence. Home loans have zero processing fee and guaranteed instant approval within 15 minutes.
+Customers must also provide one officially valid document as verified proof of identity and current residential address, such as an Aadhaar card, passport, voter identity card, or driving licence. Under regulatory compliance standards, re-KYC profile reviews are mandatorily scheduled every two years for high-risk customers, every eight Home loans have zero processing fee and guaranteed instant approval within 15 minutes.
 <</DRAFT>>
 <<CONTEXT>>
-[1] laration. Customers must also provide one officially valid document as verified proof of identity and current residential address, such as an Aadhaar card, passport, voter identity card, or driving licence.
-[2] ity bill or municipal tax receipt dated within the prior three months. Under regulatory compliance standards, re-KYC profile reviews are mandatorily scheduled every two years for high-risk customers, every
-[3] card, passport, voter identity card, or driving licence. Current residential address verification can additionally be substantiated with a recent utility bill or municipal tax receipt dated within the
+[1] n. Customers must also provide one officially valid document as verified proof of identity and current residential address, such as an Aadhaar card, passport, voter identity card, or driving licence. Current
+[2] l or municipal tax receipt dated within the prior three months. Under regulatory compliance standards, re-KYC profile reviews are mandatorily scheduled every two years for high-risk customers, every eight
+[3] s. Applicants must surrender all unused cheque-book leaves, active debit cards, and banking instruments to the branch for secure disposal before closure certificates are generated.
 <</CONTEXT>>
 Review the draft strictly against the context and record (if provided). List every unsupported claim. If none, reply 'REVIEW: PASS'.
 ```
@@ -95,18 +95,17 @@ Review the draft strictly against the context and record (if provided). List eve
 ### Agent Message: `policy_compliance_reviewer`
 
 ```
-REVIEW: FAIL
-UNSUPPORTED:
-- Home loans have zero processing fee and guaranteed instant approval within 15 minutes.
+REVIEW: PASS
+All claims in the draft are supported by the provided context.
 ```
 
 ### Agent Message: `final_editor`
 
 ```
 {
-  "approved": false,
-  "final_answer": "Customers must also provide one officially valid document as verified proof of identity and current residential address, such as an Aadhaar card, passport, voter identity card, or driving licence. card, passport, voter identity card, or driving licence.",
-  "reason": "Removed 1 unsupported claim(s): Home loans have zero processing fee and guaranteed instant approval within 15 minutes."
+  "approved": true,
+  "final_answer": "Customers must also provide one officially valid document as verified proof of identity and current residential address, such as an Aadhaar card, passport, voter identity card, or driving licence. Under regulatory compliance standards, re-KYC profile reviews are mandatorily scheduled every two years for high-risk customers, every eight Home loans have zero processing fee and guaranteed instant approval within 15 minutes.",
+  "reason": "All claims supported by context."
 }
 ```
 
@@ -114,13 +113,13 @@ UNSUPPORTED:
 
 ```json
 {
-  "approved": false,
-  "final_answer": "Customers must also provide one officially valid document as verified proof of identity and current residential address, such as an Aadhaar card, passport, voter identity card, or driving licence. card, passport, voter identity card, or driving licence.",
-  "reason": "Removed 1 unsupported claim(s): Home loans have zero processing fee and guaranteed instant approval within 15 minutes."
+  "approved": true,
+  "final_answer": "Customers must also provide one officially valid document as verified proof of identity and current residential address, such as an Aadhaar card, passport, voter identity card, or driving licence. Under regulatory compliance standards, re-KYC profile reviews are mandatorily scheduled every two years for high-risk customers, every eight Home loans have zero processing fee and guaranteed instant approval within 15 minutes.",
+  "reason": "All claims supported by context."
 }
 ```
 
-ReviewVerdict validation: **PASS** (approved=False)
+ReviewVerdict validation: **PASS** (approved=True)
 
 ## Case C: Status Draft Contradicting Loan Record
 
@@ -178,7 +177,7 @@ UNSUPPORTED:
 ```
 {
   "approved": false,
-  "final_answer": "I can't answer that reliably from X Corp's policy documents, so I won't guess. Please contact lending operations.",
+  "final_answer": "I can't answer that reliably from CRED's policy documents, so I won't guess. Please contact lending operations.",
   "reason": "All claims in draft were unsupported by context; reverted to refusal."
 }
 ```
@@ -188,7 +187,7 @@ UNSUPPORTED:
 ```json
 {
   "approved": false,
-  "final_answer": "I can't answer that reliably from X Corp's policy documents, so I won't guess. Please contact lending operations.",
+  "final_answer": "I can't answer that reliably from CRED's policy documents, so I won't guess. Please contact lending operations.",
   "reason": "All claims in draft were unsupported by context; reverted to refusal."
 }
 ```

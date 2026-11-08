@@ -1,6 +1,6 @@
 # Part 1 — Chunking & Indexing
 
-- Generated: 2026-11-08T10:12:30.994701+00:00
+- Generated: 2026-11-08T10:38:24.234954+00:00
 - MOCK_LLM: True
 - CREWAI_DISABLE_TELEMETRY: true
 - OTEL_SDK_DISABLED: true
@@ -16,16 +16,16 @@
 
 | Collection | Chunk Count |
 | --- | --- |
-| kb_fixed | 62 |
+| kb_fixed | 61 |
 | kb_sentence | 26 |
 
 ## Sample Retrieval: 'How is EMI calculated?'
 
 | Collection | Rank | Chunk ID | Doc ID | Cosine Distance | Snippet |
 | --- | --- | --- | --- | --- | --- |
-| kb_fixed | 1 | fixed:emi_calculation:000 | emi_calculation | 0.5047 | Equated Monthly Installments at X Corp Bank are calculated using the reduci... |
-| kb_fixed | 2 | fixed:emi_calculation:003 | emi_calculation | 0.5690 | mount is rounded off to the nearest whole rupee to standardize billing sche... |
-| kb_fixed | 3 | fixed:emi_calculation:002 | emi_calculation | 0.5948 | otes the monthly interest rate derived by dividing the annual rate by 12, a... |
+| kb_fixed | 1 | fixed:emi_calculation:000 | emi_calculation | 0.4603 | Equated Monthly Installments at CRED are calculated using the reducing-bala... |
+| kb_fixed | 2 | fixed:emi_calculation:003 | emi_calculation | 0.4917 | s rounded off to the nearest whole rupee to standardize billing schedules a... |
+| kb_fixed | 3 | fixed:emi_calculation:002 | emi_calculation | 0.5526 | e monthly interest rate derived by dividing the annual rate by 12, and n re... |
 | kb_sentence | 1 | sentence:emi_calculation:001 | emi_calculation | 0.3652 | The calculated installment amount is rounded off to the nearest whole rupee... |
-| kb_sentence | 2 | sentence:emi_calculation:000 | emi_calculation | 0.5790 | Equated Monthly Installments at X Corp Bank are calculated using the reduci... |
-| kb_sentence | 3 | sentence:nri_accounts:001 | nri_accounts | 0.7801 | Funds maintained within NRE and FCNR accounts remain fully and freely repat... |
+| kb_sentence | 2 | sentence:emi_calculation:000 | emi_calculation | 0.5431 | Equated Monthly Installments at CRED are calculated using the reducing-bala... |
+| kb_sentence | 3 | sentence:minimum_balance:000 | minimum_balance | 0.7441 | CRED mandates that savings account holders maintain a specified average mon... |

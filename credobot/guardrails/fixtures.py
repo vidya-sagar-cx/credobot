@@ -1,11 +1,11 @@
 """Test fixtures for guardrail calibration, detection, and evaluation."""
 
-# Fabricated unsupported financial claims with no basis in X Corp policy documents:
+# Fabricated unsupported financial claims with no basis in CRED policy documents:
 UNSUPPORTED_CLAIMS: list[str] = [
     "Home loans have zero processing fee and guaranteed instant approval within 15 minutes.",
     "NRI accounts earn a guaranteed 15 percent tax-free annual interest on all savings deposits.",
     "Borrowers with CIBIL score below 400 are automatically eligible for unsecured personal loans up to 50 lakhs.",
-    "Gold loans at X Corp Bank require no physical collateral or gold valuation appraisal.",
+    "Gold loans at CRED require no physical collateral or gold valuation appraisal.",
     "All floating rate education loans are completely waived if the student attains higher honors.",
 ]
 
