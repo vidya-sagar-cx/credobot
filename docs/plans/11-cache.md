@@ -70,10 +70,10 @@ its JSON. Expose `RESPONSE_CACHE.stats()` for the API `/health` (plan 15).
 - `test_thread_safety_smoke` — 8 threads × 50 get/set, no exceptions, size ≤ max.
 
 ## Steps
-- [ ] `cache.py` + tests
-- [ ] Wire into `rag_tool.py` (if present)
-- [ ] Demo + transcript
-- [ ] Verify; PROGRESS; commit
+- [x] `cache.py` + tests
+- [x] Wire into `rag_tool.py` (if present)
+- [x] Demo + transcript
+- [x] Verify; PROGRESS; commit
 
 ## Verify
 1. `uv run python -m credobot.cache` → table shows call 2 is a hit with zero LLM/Chroma
