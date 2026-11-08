@@ -71,10 +71,10 @@ After running: set `DEPLOY_COLLECTION = "<winner>"` in `config.py` (env override
 - `test_recommend_tiebreak` — synthetic equal results → `kb_sentence`.
 
 ## Steps
-- [ ] Implement `eval_chunking.py`
-- [ ] Unit tests with monkeypatched retrieve
-- [ ] Run the module; read numbers; set `DEPLOY_COLLECTION`
-- [ ] Verify; DECISIONS; PROGRESS; commit
+- [x] Implement `eval_chunking.py`
+- [x] Unit tests with monkeypatched retrieve
+- [x] Run the module; read numbers; set `DEPLOY_COLLECTION`
+- [x] Verify; DECISIONS; PROGRESS; commit
 
 ## Verify
 1. `uv run python -m credobot.rag.eval_chunking` → two per-query tables with fractions,

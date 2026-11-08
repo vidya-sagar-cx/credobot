@@ -24,8 +24,8 @@ change log at the bottom.
 | `calibration_sims` | fixed: min_in=0.4132, max_out=0.1894, gap=0.2238; sentence: min_in=0.3889, max_out=0.0770, gap=0.3119; overall: min_in=0.3889, max_out=0.1894 | 04 | 17 | 6 in-scope + 3 out-of-scope queries measured |
 | `idk_threshold` | 0.29 | 04 | 08, 09, 16, 17 | Midpoint separating overall min_in (0.3889) and max_out (0.1894) |
 | `top_k` | 3 | 04 | 05, 08 | |
-| `chunking_pr_results` | TBD (macro P/R per collection) | 05 | 17 | |
-| `deploy_collection` | TBD (`kb_fixed` or `kb_sentence`) | 05 | 08, 09, 11, 14 | also in `credobot/config.py` |
+| `chunking_pr_results` | kb_fixed: P=0.8333, R=1.0000, F1=0.9091; kb_sentence: P=0.5833, R=1.0000, F1=0.7368 | 05 | 17 | Recommendation: We recommend deploying `kb_fixed` for production retrieval. In our empirical evaluation across in-scope policy queries, `kb_fixed` achieved a superior macro-averaged Precision of 0.8333, Recall of 1.0000, and F1 score of 0.9091, compared to `kb_sentence` which achieved Precision of 0.5833, Recall of 1.0000, and F1 score of 0.7368. Fixed-size chunking with character overlap consistently concentrates top-k retrieved chunks within the exact target policy documents, eliminating cross-document noise while preserving 100% recall. |
+| `deploy_collection` | kb_fixed | 05 | 08, 09, 11, 14 | Selected via highest macro F1 (0.9091 vs 0.7368); also set in config.py |
 | `escalation_formula` | TBD | 06 | 08, 17 | |
 | `escalation_threshold` | TBD + percentile justification | 06 | 08, 17 | |
 | `support_threshold` | TBD (sentence-level groundedness) | 09 | 13, 16 | |
@@ -43,3 +43,4 @@ change log at the bottom.
 | 2026-11-08 | 02 | Record 13 kb_doc_ids |
 | 2026-11-08 | 03 | Record chunking parameters and indexed chunk counts (62 fixed, 26 sentence) |
 | 2026-11-08 | 04 | Record empirical calibration similarities and IDK_THRESHOLD=0.29 |
+| 2026-11-08 | 05 | Record macro P/R/F1 results and set deploy_collection=kb_fixed |
