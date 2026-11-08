@@ -15,7 +15,14 @@ def rag_lookup(query: str) -> str:
         "fallback": ans.fallback,
         "top_similarity": ans.top_similarity,
         "cache_hit": cache_hit,
-        "context": [h.text for h in ans.context],
+        "context": [
+            {
+                "chunk_id": getattr(h, "chunk_id", ""),
+                "doc_id": getattr(h, "doc_id", ""),
+                "text": getattr(h, "text", str(h)),
+                "similarity": getattr(h, "similarity", 0.0),
+            }
+            for h in ans.context
+        ],
     }
     return json.dumps(payload)
-

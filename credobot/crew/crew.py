@@ -1,5 +1,6 @@
 """CrewAI orchestration workflow and execution runner."""
-from dataclasses import dataclass
+import json
+from dataclasses import dataclass, field
 from typing import Any
 from credobot import config  # noqa: F401
 from credobot import counters
@@ -11,6 +12,7 @@ from credobot.crew.agents import (
 )
 from credobot.crew.schemas import CrewResponse, validate_response
 from credobot.demos.transcript import Transcript
+from credobot.rag.retrieve import Hit
 from crewai import Agent, Crew, Process, Task
 
 
@@ -70,6 +72,7 @@ class CrewRun:
     lookup_raw: str
     tool_calls: dict[str, int]
     llm_calls: int
+    context: list[Hit] = field(default_factory=list)
 
 
 def run_crew(query: str, history_note: str = "") -> CrewRun:
@@ -81,6 +84,34 @@ def run_crew(query: str, history_note: str = "") -> CrewRun:
     # Extract individual task outputs
     retrieval_raw = str(crew.tasks[0].output.raw) if crew.tasks[0].output else ""
     lookup_raw = str(crew.tasks[1].output.raw) if crew.tasks[1].output else ""
+
+    # Parse context hits from retrieval_raw
+    context_hits: list[Hit] = []
+    if retrieval_raw:
+        try:
+            data = json.loads(retrieval_raw)
+            raw_ctx = data.get("context", [])
+            for c in raw_ctx:
+                if isinstance(c, dict):
+                    context_hits.append(
+                        Hit(
+                            chunk_id=c.get("chunk_id", ""),
+                            doc_id=c.get("doc_id", ""),
+                            text=c.get("text", ""),
+                            similarity=float(c.get("similarity", 0.0)),
+                        )
+                    )
+                elif isinstance(c, str):
+                    context_hits.append(
+                        Hit(
+                            chunk_id="",
+                            doc_id="",
+                            text=c,
+                            similarity=float(data.get("top_similarity", 1.0) or 1.0),
+                        )
+                    )
+        except Exception:
+            pass
 
     # Always validate output against schema
     raw_payload = out.pydantic if getattr(out, "pydantic", None) else out.raw
@@ -103,6 +134,7 @@ def run_crew(query: str, history_note: str = "") -> CrewRun:
         lookup_raw=lookup_raw,
         tool_calls=tool_calls,
         llm_calls=llm_calls,
+        context=context_hits,
     )
 
 

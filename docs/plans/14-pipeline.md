@@ -82,12 +82,12 @@ PII, injection, out-of-scope. Columns: stage, ms, detail.
 - `test_session_followup_through_pipeline` — turn 2 resolves record id from turn 1.
 
 ## Steps
-- [ ] Extend `CrewRun` with context
-- [ ] `pipeline.py`
-- [ ] Wire memory turn handler
-- [ ] Demo + transcript; tests
-- [ ] Run full suite `uv run pytest -q` (no regressions)
-- [ ] PROGRESS; commit
+- [x] Extend `CrewRun` with context
+- [x] `pipeline.py`
+- [x] Wire memory turn handler
+- [x] Demo + transcript; tests
+- [x] Run full suite `uv run pytest -q` (no regressions)
+- [x] PROGRESS; commit
 
 ## Verify
 1. `uv run python -m credobot.pipeline` → 5 stage tables; injection row stops after

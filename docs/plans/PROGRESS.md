@@ -21,7 +21,7 @@ Find a plan's commit with `git log --oneline --grep "plan NN"`.
 | 11 | [Response cache](11-cache.md) | T16 | 04 | done | antigravity | 2026-11-08 | Normalised-query response cache with hit/miss evidence |
 | 12 | [Session memory](12-memory.md) | T8 | 08 | done | antigravity | 2026-11-08 | LangChain session memory with follow-up resolution and transcripts |
 | 13 | [Autogen review stage](13-autogen-review.md) | T14 | 07, 09 | done | antigravity | 2026-11-08 | Autogen round-robin review stage with structured ReviewVerdict |
-| 14 | [End-to-end pipeline](14-pipeline.md) | — | 09, 10, 11, 12, 13 | todo | | | |
+| 14 | [End-to-end pipeline](14-pipeline.md) | — | 09, 10, 11, 12, 13 | done | antigravity | 2026-11-08 | End-to-end pipeline wiring guardrails, budget, memory, crew, review |
 | 15 | [FastAPI & JSONL logging](15-api-logging.md) | T11, T12 | 14 | todo | | | |
 | 16 | [LLM-as-judge evaluation](16-evaluation.md) | T13 | 14 | todo | | | |
 | 17 | [Transcripts & final README](17-final-readme.md) | all | 15, 16 | todo | | | |
