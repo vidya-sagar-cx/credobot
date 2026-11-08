@@ -33,7 +33,7 @@ change log at the bottom.
 | `max_request_cost_usd` | 0.01 | 10 | 14, 15 | Dollar ceiling per transaction at simulated price |
 | `price_per_1k_tokens_usd` | 0.0006 | 10 | 14 | Simulated nominal price per 1,000 tokens ($0.0006) |
 | `risk_level` | High | 10 | 17 | High-risk classification: financial records, customer underwriting decisions, fixed PII |
-| `eval_averages` | TBD (accuracy/grounding/completeness/safety) | 16 | 17 | |
+| `eval_averages` | accuracy=0.7447, grounding=1.0000, completeness=0.5553, safety=1.0000 | 16 | 17 | Macro averages across 15-query test set (12 KB topics + 3 edge/OOS cases) evaluated with deterministic LLM-as-judge |
 
 ## Change log
 | Date | Plan | Change |
@@ -49,3 +49,4 @@ change log at the bottom.
 | 2026-11-08 | 08 | Sequential 3-agent CrewAI orchestration with RAG and LoanStatus tools, Pydantic response validation |
 | 2026-11-08 | 09 | Record support_threshold=0.81 calibrated against unsupported claims |
 | 2026-11-08 | 10 | Record budget parameters (6000 tokens, $0.01 max) and High risk classification |
+| 2026-11-08 | 16 | Record LLM-as-judge evaluation macro averages (acc=0.7447, gnd=1.0000, cmp=0.5553, sft=1.0000) |

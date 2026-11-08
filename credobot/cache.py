@@ -84,6 +84,12 @@ class ResponseCache:
 RESPONSE_CACHE = ResponseCache()
 
 
+def clear_cache() -> None:
+    """Clear the global response cache."""
+    RESPONSE_CACHE.clear()
+
+
+
 def cached_grounded_answer(
     query: str, collection: str | None = None
 ) -> tuple[GroundedAnswer, bool]:

@@ -113,3 +113,4 @@ def test_session_followup_through_pipeline():
     assert "LA-1007" in res2.resolved_query
     assert res2.response.record is not None
     assert res2.response.record.record_id == "LA-1007"
+

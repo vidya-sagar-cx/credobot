@@ -165,3 +165,4 @@ def test_log_never_contains_raw_pii():
     assert aadhaar not in content
     assert acct not in content
     assert "[PAN_MASKED]" in content
+

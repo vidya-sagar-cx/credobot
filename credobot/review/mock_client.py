@@ -235,3 +235,4 @@ class MockReviewClient(ChatCompletionClient):
             cancellation_token=cancellation_token,
         )
         yield res
+

@@ -255,3 +255,4 @@ async def ws_chat(ws: WebSocket, session_id: str | None = None) -> None:
             await ws.close(code=1011)
         except Exception:
             pass
+

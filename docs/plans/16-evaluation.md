@@ -129,11 +129,11 @@ Document the formulae in the transcript so the grader can audit them.
 - `test_run_eval_smoke` (isolated_env, maybe 3 cases via parameter) — returns 4 averages.
 
 ## Steps
-- [ ] `testset.py` (align key points with actual KB text)
-- [ ] `judge.py` + unit tests
-- [ ] `run_eval.py`; run; inspect low scores — fix KB/pipeline bugs if they are real
+- [x] `testset.py` (align key points with actual KB text)
+- [x] `judge.py` + unit tests
+- [x] `run_eval.py`; run; inspect low scores — fix KB/pipeline bugs if they are real
       bugs, never tune the judge to inflate scores
-- [ ] Verify; DECISIONS; PROGRESS; commit
+- [x] Verify; DECISIONS; PROGRESS; commit
 
 ## Verify
 1. `uv run python -m credobot.eval.run_eval` → 15 rows × 4 scores + averages row;
