@@ -145,11 +145,11 @@ verdict JSON + "ReviewVerdict validation: PASS".
 - `test_llm_autogen_counter` — 2 calls per review.
 
 ## Steps
-- [ ] Re-verify autogen facts on installed version
-- [ ] `schemas.py`, `mock_client.py` (+ unit tests on `create` directly)
-- [ ] `autogen_review.py`; factory hook
-- [ ] Demo + transcript
-- [ ] Verify; PROGRESS; commit
+- [x] Re-verify autogen facts on installed version
+- [x] `schemas.py`, `mock_client.py` (+ unit tests on `create` directly)
+- [x] `autogen_review.py`; factory hook
+- [x] Demo + transcript
+- [x] Verify; PROGRESS; commit
 
 ## Verify
 1. `uv run python -m credobot.review.autogen_review` → Case A approved unchanged, Case B

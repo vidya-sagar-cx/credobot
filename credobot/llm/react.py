@@ -131,6 +131,23 @@ def parse_tool_specs(prompt_text: str) -> list[ToolSpec]:
     return specs
 
 
+def is_status_only_query(query: str) -> bool:
+    """Check if query is purely asking for application status without policy questions."""
+    if not RECORD_ID_RE.search(query):
+        return False
+    lower = query.lower()
+    policy_markers = [
+        "prepay", "penalty", "foreclose", "foreclosure", "interest", "rate",
+        "document", "kyc", "cibil", "score", "eligib", "criteria", "fee",
+        "charge", "tenure", "collateral", "guarantor", "npa", "grievance",
+        "complaint", "ombudsman", "rule", "policy", "can i", "how do", "how to"
+    ]
+    if any(m in lower for m in policy_markers):
+        return False
+    status_markers = ["status", "track", "progress", "update", "where is", "check"]
+    return any(m in lower for m in status_markers)
+
+
 def choose_tool_and_args(
     specs: list[ToolSpec], query: str, role: str | None = None
 ) -> tuple[str, dict[str, Any]] | None:

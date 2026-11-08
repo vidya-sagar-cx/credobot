@@ -47,6 +47,19 @@ def get_text_llm() -> Callable[[str], str]:
     return lambda prompt: str(llm.call(prompt))
 
 
-def get_autogen_client() -> Any:
-    """Return client for Autogen review team (implemented in Plan 13)."""
-    raise NotImplementedError("get_autogen_client will be implemented in Plan 13")
+def get_autogen_client(role: str = "reviewer") -> Any:
+    """Return client for Autogen review team."""
+    if config.MOCK_LLM:
+        from credobot.review.mock_client import MockReviewClient
+
+        return MockReviewClient(role=role)
+    api_key = os.environ.get("OPENAI_API_KEY")
+    if not api_key:
+        raise RuntimeError("OPENAI_API_KEY is required when MOCK_LLM=false")
+    from autogen_ext.models.openai import OpenAIChatCompletionClient
+
+    return OpenAIChatCompletionClient(
+        model=config.LLM_MODEL,
+        base_url=config.OPENAI_BASE_URL,
+        api_key=api_key,
+    )
