@@ -21,8 +21,8 @@ change log at the bottom.
 | `fixed_chunk_params` | size=200 chars, overlap=50 chars, snap forward max 20 chars | 03 | 05, 17 | Sliding character window with whitespace snapping |
 | `sentence_chunk_params` | sentences_per_chunk=2 | 03 | 05, 17 | Consecutive 2-sentence groups without overlap |
 | `chunk_counts` | kb_fixed: 62 chunks, kb_sentence: 26 chunks | 03 | 17 | ChromaDB indexed counts across 13 documents |
-| `calibration_sims` | TBD (per query, per collection) | 04 | 17 | |
-| `idk_threshold` | TBD | 04 | 08, 09, 16, 17 | also in `credobot/config.py` |
+| `calibration_sims` | fixed: min_in=0.4132, max_out=0.1894, gap=0.2238; sentence: min_in=0.3889, max_out=0.0770, gap=0.3119; overall: min_in=0.3889, max_out=0.1894 | 04 | 17 | 6 in-scope + 3 out-of-scope queries measured |
+| `idk_threshold` | 0.29 | 04 | 08, 09, 16, 17 | Midpoint separating overall min_in (0.3889) and max_out (0.1894) |
 | `top_k` | 3 | 04 | 05, 08 | |
 | `chunking_pr_results` | TBD (macro P/R per collection) | 05 | 17 | |
 | `deploy_collection` | TBD (`kb_fixed` or `kb_sentence`) | 05 | 08, 09, 11, 14 | also in `credobot/config.py` |
@@ -42,3 +42,4 @@ change log at the bottom.
 | 2026-11-08 | 01 | Record dataset seed, weights, ranges, rationale, and stats |
 | 2026-11-08 | 02 | Record 13 kb_doc_ids |
 | 2026-11-08 | 03 | Record chunking parameters and indexed chunk counts (62 fixed, 26 sentence) |
+| 2026-11-08 | 04 | Record empirical calibration similarities and IDK_THRESHOLD=0.29 |

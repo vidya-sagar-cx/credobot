@@ -37,7 +37,8 @@ OPENAI_BASE_URL: str | None = os.environ.get("OPENAI_BASE_URL") or None
 
 # Filled in by later plans (values recorded in docs/plans/DECISIONS.md):
 TOP_K: int = 3
-IDK_THRESHOLD: float | None = None        # plan 04
+_idk_env = os.environ.get("IDK_THRESHOLD")
+IDK_THRESHOLD: float = float(_idk_env) if _idk_env else 0.29  # calibrated in plan 04
 DEPLOY_COLLECTION: str | None = None      # plan 05
 SUPPORT_THRESHOLD: float | None = None    # plan 09
 

@@ -121,11 +121,11 @@ answer, fallback flag → `transcripts/part1_grounded.md`. Run against the
   `llm.generate` counter not incremented.
 
 ## Steps
-- [ ] `queries.py`, `retrieve.py`
-- [ ] `calibrate.py`; run it; inspect clusters
-- [ ] Set `IDK_THRESHOLD` in config from the measurement
-- [ ] `generate.py` (+ demo main)
-- [ ] Tests; Verify; DECISIONS; PROGRESS; commit
+- [x] `queries.py`, `retrieve.py`
+- [x] `calibrate.py`; run it; inspect clusters
+- [x] Set `IDK_THRESHOLD` in config from the measurement
+- [x] `generate.py` (+ demo main)
+- [x] Tests; Verify; DECISIONS; PROGRESS; commit
 
 ## Verify
 1. `uv run python -m credobot.rag.calibrate` → table printed, `min_in > max_out` for both
