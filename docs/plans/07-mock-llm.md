@@ -162,12 +162,12 @@ Missing `OPENAI_API_KEY` with `MOCK_LLM=false` → raise a clear `RuntimeError`.
   installed crewai version.)
 
 ## Steps
-- [ ] Re-verify crewai facts listed above against the installed version
-- [ ] Implement `react.py` + unit tests
-- [ ] Implement `MockLLM`
-- [ ] Implement `factory.py`
-- [ ] Minimal kickoff test passes
-- [ ] Verify; PROGRESS; commit
+- [x] Re-verify crewai facts listed above against the installed version
+- [x] Implement `react.py` + unit tests
+- [x] Implement `MockLLM`
+- [x] Implement `factory.py`
+- [x] Minimal kickoff test passes
+- [x] Verify; PROGRESS; commit
 
 ## Verify
 1. `uv run pytest tests/test_mock_llm.py -q` → all pass (including both pitfall tests).

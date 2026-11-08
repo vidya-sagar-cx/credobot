@@ -45,3 +45,4 @@ change log at the bottom.
 | 2026-11-08 | 04 | Record empirical calibration similarities and IDK_THRESHOLD=0.29 |
 | 2026-11-08 | 05 | Record macro P/R/F1 results and set deploy_collection=kb_fixed |
 | 2026-11-08 | 06 | Record escalation formula, threshold=0.55, and distribution metrics |
+| 2026-11-08 | 07 | Implement MockLLM (BaseLLM) with ReAct loop, pitfall guards, and LLM factory |
