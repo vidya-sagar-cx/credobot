@@ -117,8 +117,12 @@ To eliminate hallucination on out-of-scope (OOS) inputs without relying on an ex
 
 ### 3.4 Loan Status Escalation Formula
 The escalation function balances fraud urgency with operational aging:
-$$\text{escalation\_score} = 0.55 \times \text{flagged\_for\_fraud\_review} + 0.45 \times \left( \frac{\text{days\_since\_created}}{30} \times w_{\text{status}} \right)$$
-where $w_{\text{status}} = 0.5$ for terminal states (`Rejected`, `Disbursed`) and $1.0$ for active states.
+
+$$\text{EscalationScore} = 0.55 \times \text{FraudFlag} + 0.45 \times \left( \frac{\text{DaysSinceCreated}}{30} \times \text{StatusWeight} \right)$$
+
+where:
+- `escalation_score = 0.55 * flagged_for_fraud_review + 0.45 * (days_since_created / 30 * status_weight)`
+- `status_weight = 0.5` for terminal states (`Rejected`, `Disbursed`) and `1.0` for active states.
 - **Threshold Selection:** `0.55`.
 - **Operational Justification:** Applications older than the 80th percentile (25.0 days) reach at most $0.45 \times (30/30) = 0.450 < 0.55$. Hence, an active fraud alert is mathematically required to trigger human escalation, resulting in exactly 12 / 60 escalations (20.0%).
 

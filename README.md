@@ -139,8 +139,12 @@ Evaluated across 5 representative policy queries:
 
 ### 6. Loan Status Lookup & Escalation Formula (`credobot/tools/loan_status.py`)
 `check_loan_application_status(record_id: str) -> dict` evaluates:
-$$\text{escalation\_score} = 0.55 \times \text{fraud\_flag} + 0.45 \times \left( \frac{\text{days\_since\_created}}{30} \times \text{status\_weight} \right)$$
-where $\text{status\_weight} = 0.5$ if status $\in \{\text{Rejected}, \text{Disbursed}\}$ else $1.0$.
+
+$$\text{EscalationScore} = 0.55 \times \text{FraudFlag} + 0.45 \times \left( \frac{\text{DaysSinceCreated}}{30} \times \text{StatusWeight} \right)$$
+
+where:
+- `escalation_score = 0.55 * flagged_for_fraud_review + 0.45 * (days_since_created / 30 * status_weight)`
+- `status_weight = 0.5` if status $\in$ `{"Rejected", "Disbursed"}` else `1.0`.
 
 - **Escalation Threshold:** `0.55`.
 - **Distribution Justification:** The 80th percentile of application age in our dataset is 25.0 days. Under this formula, even an application at the 30-day maximum without a fraud flag reaches at most $0.45 \times 1.0 = 0.450 < 0.55$. Therefore, reaching $\ge 0.55$ strictly requires `flagged_for_fraud_review=True`. In our dataset, exactly **12 / 60 records (20.0%)** escalate.

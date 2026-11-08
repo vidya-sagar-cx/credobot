@@ -12,62 +12,62 @@ CredoBot is an enterprise multi-agent loan-support platform designed to answer r
 
 ```mermaid
 flowchart TD
-    User([Client / User]) -->|HTTP / WebSocket| Gateway[FastAPI Gateway]
+    User(["Client / User"]) -->|"HTTP / WebSocket"| Gateway["FastAPI Gateway"]
     
     subgraph S1["Stage 1: Governance & Budget"]
-        Gateway --> LogMW[Logging & Trace Middleware]
-        LogMW --> BudgetGate{Token & Cost<br/>Budget Check}
-        BudgetGate -->|Exceeded > 6000 tok| Err413[Reject HTTP 413]
-        BudgetGate -->|Within Budget| ACLGate[Least Autonomy Tool ACL]
+        Gateway --> LogMW["Logging & Trace Middleware"]
+        LogMW --> BudgetGate{"Token & Cost Budget Check"}
+        BudgetGate -->|"Exceeded Budget"| Err413["Reject HTTP 413"]
+        BudgetGate -->|"Within Budget"| ACLGate["Least Autonomy Tool ACL"]
     end
 
     subgraph S2["Stage 2: Input Guardrails"]
-        ACLGate --> PIIMask[PII Masking Engine<br/>PAN / Aadhaar / Account]
-        PIIMask --> InjectionCheck{Prompt Injection<br/>Detector}
-        InjectionCheck -->|Adversarial Pattern| RefusalInjection[Standard Refusal]
-        InjectionCheck -->|Clean Query| SanitizedQuery[Sanitized Masked Query]
+        ACLGate --> PIIMask["PII Masking Engine: PAN, Aadhaar, Account"]
+        PIIMask --> InjectionCheck{"Prompt Injection Detector"}
+        InjectionCheck -->|"Adversarial Pattern"| RefusalInjection["Standard Refusal"]
+        InjectionCheck -->|"Clean Query"| SanitizedQuery["Sanitized Masked Query"]
     end
 
     subgraph S3["Stage 3: Memory & Caching"]
-        SanitizedQuery --> SessionMem[LangChain Session Memory<br/>Antecedent Resolution]
-        SessionMem --> CacheLookup{Normalized LRU Cache<br/>Unicode NFKC}
-        CacheLookup -->|Cache Hit| FinalLog
-        CacheLookup -->|Cache Miss| CrewOrchestrator
+        SanitizedQuery --> SessionMem["LangChain Session Memory: Antecedent Resolution"]
+        SessionMem --> CacheLookup{"Normalized LRU Cache: Unicode NFKC"}
+        CacheLookup -->|"Cache Hit"| FinalLog
+        CacheLookup -->|"Cache Miss"| CrewOrchestrator
     end
 
     subgraph S4["Stage 4: CrewAI Multi-Agent Core"]
-        CrewOrchestrator[CrewAI Sequential Orchestrator]
-        CrewOrchestrator --> RetrievalAgent[Retrieval Agent]
-        CrewOrchestrator --> LookupAgent[Lookup Agent]
-        CrewOrchestrator --> ComposerAgent[Response Composer]
+        CrewOrchestrator["CrewAI Sequential Orchestrator"]
+        CrewOrchestrator --> RetrievalAgent["Retrieval Agent"]
+        CrewOrchestrator --> LookupAgent["Lookup Agent"]
+        CrewOrchestrator --> ComposerAgent["Response Composer"]
         
-        RetrievalAgent -->|RAG Tool| Chroma[(ChromaDB kb_fixed<br/>Local Vector Store)]
-        LookupAgent -->|Status Tool| Dataset[(Loan Applications<br/>Dataset N=60)]
+        RetrievalAgent -->|"RAG Tool"| Chroma[("ChromaDB kb_fixed Local Vector Store")]
+        LookupAgent -->|"Status Tool"| Dataset[("Loan Applications Dataset N=60")]
         
         RetrievalAgent --> ComposerAgent
         LookupAgent --> ComposerAgent
-        ComposerAgent --> CrewResponseModel[Validated CrewResponse Schema]
+        ComposerAgent --> CrewResponseModel["Validated CrewResponse Schema"]
     end
 
     subgraph S5["Stage 5: Output Guardrail"]
-        CrewResponseModel --> GroundedCheck{Groundedness Entailment<br/>Cosine Support >= 0.81}
-        GroundedCheck -->|Ungrounded Claim| RefusalUngrounded[Refusal / Fallback]
-        GroundedCheck -->|Supported| VerifiedDraft[Verified Draft Answer]
+        CrewResponseModel --> GroundedCheck{"Groundedness Entailment Check"}
+        GroundedCheck -->|"Ungrounded Claim"| RefusalUngrounded["Refusal or Fallback"]
+        GroundedCheck -->|"Supported"| VerifiedDraft["Verified Draft Answer"]
     end
 
     subgraph S6["Stage 6: AutoGen Review Stage"]
-        VerifiedDraft --> AutoGenTeam[AutoGen RoundRobinGroupChat<br/>max_turns=2]
-        AutoGenTeam --> ComplianceReviewer[Policy Compliance Reviewer]
-        ComplianceReviewer --> FinalEditor[Final Editor Agent]
-        FinalEditor --> ReviewVerdictModel[Validated ReviewVerdict Schema<br/>approved: bool, final_answer: str]
+        VerifiedDraft --> AutoGenTeam["AutoGen RoundRobinGroupChat (max_turns=2)"]
+        AutoGenTeam --> ComplianceReviewer["Policy Compliance Reviewer"]
+        ComplianceReviewer --> FinalEditor["Final Editor Agent"]
+        FinalEditor --> ReviewVerdictModel["Validated ReviewVerdict Schema"]
     end
 
     subgraph S7["Stage 7: Delivery & Audit Logging"]
-        ReviewVerdictModel --> ResponseCacheStore[Store in LRU Cache]
-        ResponseCacheStore --> FinalLog[ELK JSONL Audit Logger<br/>Trace ID, Timing, Masked PII]
+        ReviewVerdictModel --> ResponseCacheStore["Store in LRU Cache"]
+        ResponseCacheStore --> FinalLog["ELK JSONL Audit Logger (Trace ID, Timing, Masked PII)"]
         RefusalInjection --> FinalLog
         RefusalUngrounded --> FinalLog
-        FinalLog --> UserDelivery([Response Emitted to User])
+        FinalLog --> UserDelivery(["Response Emitted to User"])
     end
 ```
 
@@ -87,17 +87,17 @@ Documents are indexed into two isolated ChromaDB collections using local embeddi
 
 ```mermaid
 flowchart LR
-    Docs[13 Policy Markdown Docs] --> SplitFixed[Fixed Window Splitter<br/>200 chars / 50 overlap]
-    Docs --> SplitSent[Sentence Splitter<br/>2 sentences / chunk]
+    Docs["13 Policy Markdown Docs"] --> SplitFixed["Fixed Window Splitter (200 chars, 50 overlap)"]
+    Docs --> SplitSent["Sentence Splitter (2 sentences per chunk)"]
     
-    SplitFixed --> ChunksFixed[62 Fixed Chunks]
-    SplitSent --> ChunksSent[26 Sentence Chunks]
+    SplitFixed --> ChunksFixed["62 Fixed Chunks"]
+    SplitSent --> ChunksSent["26 Sentence Chunks"]
     
-    ChunksFixed --> LocalEmbed1[all-MiniLM-L6-v2<br/>Dense Embeddings]
-    ChunksSent --> LocalEmbed2[all-MiniLM-L6-v2<br/>Dense Embeddings]
+    ChunksFixed --> LocalEmbed1["all-MiniLM-L6-v2 Dense Embeddings"]
+    ChunksSent --> LocalEmbed2["all-MiniLM-L6-v2 Dense Embeddings"]
     
-    LocalEmbed1 --> ChromaFixed[(ChromaDB: kb_fixed<br/>P=0.8333, F1=0.9091)]
-    LocalEmbed2 --> ChromaSent[(ChromaDB: kb_sentence<br/>P=0.5833, F1=0.7368)]
+    LocalEmbed1 --> ChromaFixed[("ChromaDB: kb_fixed (P=0.8333, F1=0.9091)")]
+    LocalEmbed2 --> ChromaSent[("ChromaDB: kb_sentence (P=0.5833, F1=0.7368)")]
 ```
 
 #### Empirical Calibration of the "I Don't Know" Fallback Threshold
@@ -117,13 +117,13 @@ sequenceDiagram
     
     Client->>RAG: query_text
     RAG->>Chroma: similarity_search_with_score(query, k=3)
-    Chroma-->>RAG: [chunk_1, chunk_2, chunk_3], similarities
+    Chroma-->>RAG: chunk results and similarities
     
-    alt max(similarity) < 0.29
-        RAG-->>Client: IDK_MESSAGE ("I don't know — the CRED policy knowledge base doesn't cover that.")
-    else max(similarity) >= 0.29
+    alt Similarity below 0.29
+        RAG-->>Client: IDK_MESSAGE (Policy knowledge base does not cover that)
+    else Similarity at or above 0.29
         RAG->>RAG: Construct grounded answer strictly from retrieved chunk text
-        RAG-->>Client: GroundedAnswer(answer, context=[citations], supported=True)
+        RAG-->>Client: GroundedAnswer with citations
     end
 ```
 
@@ -138,29 +138,33 @@ sequenceDiagram
 
 #### Designed Escalation Formula
 The escalation engine evaluates a continuous score in $[0.0, 1.0]$:
-$$\text{escalation\_score} = 0.55 \times \text{flagged\_for\_fraud\_review} + 0.45 \times \left( \frac{\text{days\_since\_created}}{30} \times w_{\text{status}} \right)$$
-where $w_{\text{status}} = 0.5$ if status $\in \{\text{Rejected}, \text{Disbursed}\}$ and $1.0$ otherwise.
+
+$$\text{EscalationScore} = 0.55 \times \text{FraudFlag} + 0.45 \times \left( \frac{\text{DaysSinceCreated}}{30} \times \text{StatusWeight} \right)$$
+
+where:
+- `escalation_score = 0.55 * flagged_for_fraud_review + 0.45 * (days_since_created / 30 * status_weight)`
+- `status_weight = 0.5` if status $\in$ `{"Rejected", "Disbursed"}` and `1.0` otherwise.
 
 - **Threshold:** `ESCALATION_THRESHOLD = 0.55`.
 - **Mathematical Guarantee:** Because maximum non-fraud recency contribution is $0.45 \times (30/30) \times 1.0 = 0.450 < 0.55$, an application **cannot** breach the threshold without an active fraud flag. Exactly 12 / 60 records (20.0%) trigger human escalation.
 
 ```mermaid
 flowchart TD
-    Req[Loan Status Request: record_id] --> Fetch[Query LOAN_APPLICATIONS Dataset]
-    Fetch --> CheckFound{Record Exists?}
-    CheckFound -->|No| NotFound[Return Application Not Found]
-    CheckFound -->|Yes| Extract[Extract: status, amount, days_since_created, fraud_flag]
+    Req["Loan Status Request: record_id"] --> Fetch["Query LOAN_APPLICATIONS Dataset"]
+    Fetch --> CheckFound{"Record Exists?"}
+    CheckFound -->|"No"| NotFound["Return Application Not Found"]
+    CheckFound -->|"Yes"| Extract["Extract: status, amount, days_since_created, fraud_flag"]
     
-    Extract --> StatusWeight{Status Terminal?<br/>Rejected / Disbursed}
-    StatusWeight -->|Yes| W05[w_status = 0.5]
-    StatusWeight -->|No| W10[w_status = 1.0]
+    Extract --> StatusWeight{"Status Terminal? (Rejected or Disbursed)"}
+    StatusWeight -->|"Yes"| W05["status_weight = 0.5"]
+    StatusWeight -->|"No"| W10["status_weight = 1.0"]
     
-    W05 --> CalcScore[Compute escalation_score<br/>0.55*fraud + 0.45*(days/30)*w_status]
+    W05 --> CalcScore["Compute escalation_score = 0.55*fraud + 0.45*(days/30)*status_weight"]
     W10 --> CalcScore
     
-    CalcScore --> ThresholdCheck{escalation_score >= 0.55}
-    ThresholdCheck -->|Yes| FlagEscalate[escalate = True<br/>Queue for Manager Review]
-    ThresholdCheck -->|No| NormalPass[escalate = False<br/>Standard Status Response]
+    CalcScore --> ThresholdCheck{"escalation_score >= 0.55"}
+    ThresholdCheck -->|"Yes"| FlagEscalate["escalate = True (Queue for Manager Review)"]
+    ThresholdCheck -->|"No"| NormalPass["escalate = False (Standard Status Response)"]
 ```
 
 ---
@@ -186,18 +190,18 @@ sequenceDiagram
     
     Orch->>Ret: Task 1: Policy Retrieval
     Ret->>RAG: rag_lookup(query)
-    RAG-->>Ret: grounded context or fallback
+    RAG-->>Ret: Grounded context or fallback
     Ret-->>Orch: Policy evidence
     
     Orch->>Look: Task 2: Loan Status Lookup
-    opt Query contains loan ID (e.g. LA-1001)
-        Look->>Status: check_loan_application_status("LA-1001")
-        Status-->>Look: status dict + escalation_score
+    opt Query contains loan ID
+        Look->>Status: check_loan_application_status(loan_id)
+        Status-->>Look: Status details and escalation_score
     end
-    Look-->>Orch: Record details & escalation flag
+    Look-->>Orch: Record details and escalation flag
     
     Orch->>Comp: Task 3: Compose Customer Response
-    Comp->>Comp: Validate schema (CrewResponse)
+    Comp->>Comp: Validate CrewResponse schema
     Comp-->>Orch: Final CrewResponse JSON
 ```
 
@@ -214,27 +218,27 @@ The guardrail subsystem guarantees bidirectional protection against malicious in
 ```mermaid
 flowchart TD
     subgraph InputGuardrails["Input Guardrail Layer"]
-        InQuery[Raw User Query] --> PIIFilter[PII Regex Scanner]
-        PIIFilter -->|Match PAN [A-Z]{5}[0-9]{4}[A-Z]| MaskPAN[Replace with [PAN_MASKED]]
-        PIIFilter -->|Match Aadhaar [0-9]{4} [0-9]{4} [0-9]{4}| MaskUID[Replace with [AADHAAR_MASKED]]
-        PIIFilter -->|Match Account [0-9]{9,18}| MaskACC[Replace with [ACCOUNT_MASKED]]
+        InQuery["Raw User Query"] --> PIIFilter["PII Regex Scanner"]
+        PIIFilter -->|"Match PAN"| MaskPAN["Replace with PAN_MASKED"]
+        PIIFilter -->|"Match Aadhaar"| MaskUID["Replace with AADHAAR_MASKED"]
+        PIIFilter -->|"Match Account"| MaskACC["Replace with ACCOUNT_MASKED"]
         
-        MaskPAN --> CleanMaskedQuery[PII-Sanitized Query]
+        MaskPAN --> CleanMaskedQuery["PII-Sanitized Query"]
         MaskUID --> CleanMaskedQuery
         MaskACC --> CleanMaskedQuery
         
-        CleanMaskedQuery --> InjectionFilter{Injection Pattern Match<br/>'ignore previous instructions',<br/>'system prompt', 'jailbreak'}
-        InjectionFilter -->|Match Found| RefuseInj[Return REFUSAL_INJECTION<br/>Halt Execution]
-        InjectionFilter -->|Clean| SafeQuery[Forward to Pipeline Execution]
+        CleanMaskedQuery --> InjectionFilter{"Injection Pattern Match?"}
+        InjectionFilter -->|"Match Found"| RefuseInj["Return REFUSAL_INJECTION (Halt Execution)"]
+        InjectionFilter -->|"Clean"| SafeQuery["Forward to Pipeline Execution"]
     end
 
     subgraph OutputGuardrails["Output Guardrail Layer"]
-        DraftAnswer[Generated Draft Answer] --> SentenceSplit[Split into Individual Claims]
-        SentenceSplit --> EntailmentCheck[Cosine Similarity against<br/>Retrieved Context Chunks]
-        EntailmentCheck --> SupportScore[Compute Sentence Support Ratio]
-        SupportScore --> Threshold{Support Ratio >= 0.81?}
-        Threshold -->|No| RefuseUngrounded[Return REFUSAL_UNGROUNDED<br/>Suppress Speculative Claims]
-        Threshold -->|Yes| OutputSafe[Forward to Review Stage]
+        DraftAnswer["Generated Draft Answer"] --> SentenceSplit["Split into Individual Claims"]
+        SentenceSplit --> EntailmentCheck["Cosine Similarity against Context Chunks"]
+        EntailmentCheck --> SupportScore["Compute Sentence Support Ratio"]
+        SupportScore --> Threshold{"Support Ratio >= 0.81?"}
+        Threshold -->|"No"| RefuseUngrounded["Return REFUSAL_UNGROUNDED (Suppress Claims)"]
+        Threshold -->|"Yes"| OutputSafe["Forward to Review Stage"]
     end
 ```
 
@@ -257,12 +261,12 @@ sequenceDiagram
     Reviewer->>Reviewer: Verify claims against context sentences
     
     alt All Claims Grounded
-        Reviewer->>Editor: "REVIEW: PASS. All claims supported by context."
-        Editor->>Pipeline: ReviewVerdict(approved=True, final_answer=draft, reason="...")
+        Reviewer->>Editor: REVIEW PASS - All claims supported by context
+        Editor->>Pipeline: ReviewVerdict approved=True, final_answer=draft
     else Unsupported Claim Detected
-        Reviewer->>Editor: "REVIEW: FAIL. Unsupported: [unverified claim]"
-        Editor->>Editor: Excise ungrounded assertion; rewrite using context
-        Editor->>Pipeline: ReviewVerdict(approved=False, final_answer=revised_draft, reason="...")
+        Reviewer->>Editor: REVIEW FAIL - Unsupported claims found
+        Editor->>Editor: Excise ungrounded assertion and rewrite using context
+        Editor->>Pipeline: ReviewVerdict approved=False, final_answer=revised_draft
     end
 ```
 
@@ -292,19 +296,19 @@ CredoBot is classified as **HIGH RISK** under financial AI governance frameworks
 ```mermaid
 flowchart LR
     subgraph MemoryLayer["LangChain Session Memory"]
-        Turn1["Turn 1: 'What is the status of LA-1007?'"] --> Store[InMemoryChatMessageHistory]
-        Store --> State[Session State: active_loan = LA-1007]
-        Turn2["Turn 2: 'Is it approved?'"] --> Resolve[Rewrite Query: 'Is application LA-1007 approved?']
+        Turn1["Turn 1: Status of LA-1007?"] --> Store["InMemoryChatMessageHistory"]
+        Store --> State["Session State: active_loan = LA-1007"]
+        Turn2["Turn 2: Is it approved?"] --> Resolve["Rewrite Query: Is application LA-1007 approved?"]
         State --> Resolve
     end
 
     subgraph CacheLayer["LRU Query Response Cache"]
-        Incoming["Incoming Query"] --> Norm[Normalize: Unicode NFKC + Lowercase + Strip Punctuation]
-        Norm --> KeyGen["Key: 'kb_fixed::how is emi calculated'"]
-        KeyGen --> CacheCheck{Cache Hit?}
-        CacheCheck -->|Yes| InstantReturn[Return Cached GroundedAnswer<br/>Zero LLM / RAG overhead]
-        CacheCheck -->|No| ExecRAG[Execute Full Pipeline]
-        ExecRAG --> SetCache[Store in Cache with TTL]
+        Incoming["Incoming Query"] --> Norm["Normalize: Unicode NFKC, Lowercase, Strip Punctuation"]
+        Norm --> KeyGen["Key: kb_fixed::how is emi calculated"]
+        KeyGen --> CacheCheck{"Cache Hit?"}
+        CacheCheck -->|"Yes"| InstantReturn["Return Cached GroundedAnswer (Zero Latency)"]
+        CacheCheck -->|"No"| ExecRAG["Execute Full Pipeline"]
+        ExecRAG --> SetCache["Store in Cache with TTL"]
     end
 ```
 
@@ -343,16 +347,14 @@ Every request produces one atomic JSONL log entry:
 
 Evaluated across a 15-case test suite covering all 12 policy topics and 3 edge/OOS cases:
 
-```mermaid
-xychart-beta
-    title "LLM-as-Judge 15-Query Evaluation Scores"
-    x-axis ["Accuracy", "Grounding", "Completeness", "Safety"]
-    y-axis "Macro Score (0.0 - 1.0)" 0.0 --> 1.0
-    bar [0.7447, 1.0000, 0.5553, 1.0000]
-```
+| Dimension | Benchmark Standard | Macro Score | Visual Score |
+|---|---|---|---|
+| **Accuracy** | Factual consistency against reference key points | **0.7660** | `███████████████░░░░░` (76.6%) |
+| **Grounding** | Strict entailment against retrieved context | **1.0000** | `████████████████████` (100.0%) |
+| **Completeness** | Coverage of reference document clauses | **0.6007** | `████████████░░░░░░░░` (60.1%) |
+| **Safety** | Zero PII leaks, zero injection compromises | **1.0000** | `████████████████████` (100.0%) |
 
-- **Accuracy (0.7447):** Factual consistency against reference key points.
+- **Accuracy (0.7660):** Factual consistency against reference key points.
 - **Grounding (1.0000):** Guaranteed by the stage-5 output guardrail (`SUPPORT_THRESHOLD=0.81`) and AutoGen review.
-- **Completeness (0.5553):** Synthesizes concise, direct answers rather than verbatim text dumping.
+- **Completeness (0.6007):** Synthesizes concise, direct answers rather than verbatim text dumping.
 - **Safety (1.0000):** 100% rejection of prompt injections and zero PII leakage.
-
