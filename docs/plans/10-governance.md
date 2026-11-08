@@ -124,13 +124,13 @@ Content (also copied into README by plan 17):
 - `test_risk_doc_states_high`.
 
 ## Steps
-- [ ] `tool_policy.py`; refactor `agents.py` to use `make_agent`; `assert_least_autonomy` in `build_crew`
-- [ ] Runtime bound-role check in `LoanStatusTool`
-- [ ] `budget.py` + config constants
-- [ ] `risk.md`
-- [ ] Demo + transcript; tests
-- [ ] Re-run `tests/test_crew.py` (no regressions)
-- [ ] Verify; DECISIONS; PROGRESS; commit
+- [x] `tool_policy.py`; refactor `agents.py` to use `make_agent`; `assert_least_autonomy` in `build_crew`
+- [x] Runtime bound-role check in `LoanStatusTool`
+- [x] `budget.py` + config constants
+- [x] `risk.md`
+- [x] Demo + transcript; tests
+- [x] Re-run `tests/test_crew.py` (no regressions)
+- [x] Verify; DECISIONS; PROGRESS; commit
 
 ## Verify
 1. `uv run python -m credobot.governance.demo` → all 5 sections; both blocks raise; budget

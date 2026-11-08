@@ -19,6 +19,8 @@ class RagLookupTool(BaseTool):
     name: str = "rag_lookup"
     description: str = "Search the X Corp policy knowledge base and return a grounded answer."
     args_schema: type[BaseModel] = RagLookupInput
+    allowed_role: str = "Retrieval Agent"
+    bound_role: str = "Retrieval Agent"
 
     def _run(self, query: str) -> str:
         return rag_lookup(query)
@@ -28,6 +30,15 @@ class LoanStatusTool(BaseTool):
     name: str = "check_loan_application_status"
     description: str = "Look up a loan application's status, amount and escalation score."
     args_schema: type[BaseModel] = LoanStatusInput
+    allowed_role: str = "Lookup Agent"
+    bound_role: str = "Lookup Agent"
 
     def _run(self, record_id: str) -> str:
+        from credobot.governance.tool_policy import TOOL_ACL, ToolPermissionError
+
+        allowed = TOOL_ACL.get(self.name, frozenset())
+        if self.bound_role not in allowed:
+            raise ToolPermissionError(
+                f"Runtime caller violation: Role '{self.bound_role}' cannot execute tool '{self.name}'."
+            )
         return json.dumps(check_loan_application_status(record_id))

@@ -48,15 +48,19 @@ def build_tasks(
 
 
 def build_crew(query: str, llm: Any = None, history_note: str = "") -> Crew:
-    """Construct sequential Crew with three agents."""
+    """Construct sequential Crew with three agents, verifying least autonomy."""
+    from credobot.governance.tool_policy import assert_least_autonomy
+
     agents = build_agents(llm)
     tasks = build_tasks(query, agents, history_note)
-    return Crew(
+    crew = Crew(
         agents=list(agents.values()),
         tasks=tasks,
         process=Process.sequential,
         verbose=False,
     )
+    assert_least_autonomy(crew)
+    return crew
 
 
 @dataclass

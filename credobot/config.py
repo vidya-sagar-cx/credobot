@@ -43,3 +43,11 @@ DEPLOY_COLLECTION: str = os.environ.get("DEPLOY_COLLECTION", "kb_fixed")  # plan
 _support_env = os.environ.get("SUPPORT_THRESHOLD")
 SUPPORT_THRESHOLD: float = float(_support_env) if _support_env else 0.81  # plan 09
 
+# Budget constants (plan 10):
+MAX_REQUEST_TOKENS: int = int(os.environ.get("MAX_REQUEST_TOKENS", "6000"))
+MAX_REQUEST_COST_USD: float = float(os.environ.get("MAX_REQUEST_COST_USD", "0.01"))
+PRICE_PER_1K_TOKENS_USD: float = float(os.environ.get("PRICE_PER_1K_TOKENS_USD", "0.0006"))
+PROMPT_OVERHEAD_TOKENS: int = int(os.environ.get("PROMPT_OVERHEAD_TOKENS", "250"))
+MAX_OUTPUT_TOKENS: int = int(os.environ.get("MAX_OUTPUT_TOKENS", "500"))
+MAX_QUERY_CHARS: int = int(os.environ.get("MAX_QUERY_CHARS", "4000"))
+

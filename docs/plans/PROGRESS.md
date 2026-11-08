@@ -17,7 +17,7 @@ Find a plan's commit with `git log --oneline --grep "plan NN"`.
 | 07 | [MockLLM & LLM factory](07-mock-llm.md) | — | 00 | done | antigravity | 2026-11-08 | BaseLLM subclass with pitfall guards & ReAct |
 | 08 | [CrewAI crew & structured output](08-crew.md) | T7, T9 | 04, 06, 07 | done | antigravity | 2026-11-08 | Sequential crew, RAG & status tools, CrewResponse validated |
 | 09 | [Guardrails](09-guardrails.md) | T10 | 04 | done | antigravity | 2026-11-08 | PII masking, injection detection, groundedness check (threshold=0.81) |
-| 10 | [Governance](10-governance.md) | T15 | 08 | todo | | | |
+| 10 | [Governance](10-governance.md) | T15 | 08 | done | antigravity | 2026-11-08 | Least autonomy ACL, risk classification, budget cap |
 | 11 | [Response cache](11-cache.md) | T16 | 04 | todo | | | |
 | 12 | [Session memory](12-memory.md) | T8 | 08 | todo | | | |
 | 13 | [Autogen review stage](13-autogen-review.md) | T14 | 07, 09 | todo | | | |
