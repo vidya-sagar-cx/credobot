@@ -19,7 +19,7 @@ Find a plan's commit with `git log --oneline --grep "plan NN"`.
 | 09 | [Guardrails](09-guardrails.md) | T10 | 04 | done | antigravity | 2026-11-08 | PII masking, injection detection, groundedness check (threshold=0.81) |
 | 10 | [Governance](10-governance.md) | T15 | 08 | done | antigravity | 2026-11-08 | Least autonomy ACL, risk classification, budget cap |
 | 11 | [Response cache](11-cache.md) | T16 | 04 | done | antigravity | 2026-11-08 | Normalised-query response cache with hit/miss evidence |
-| 12 | [Session memory](12-memory.md) | T8 | 08 | todo | | | |
+| 12 | [Session memory](12-memory.md) | T8 | 08 | done | antigravity | 2026-11-08 | LangChain session memory with follow-up resolution and transcripts |
 | 13 | [Autogen review stage](13-autogen-review.md) | T14 | 07, 09 | todo | | | |
 | 14 | [End-to-end pipeline](14-pipeline.md) | — | 09, 10, 11, 12, 13 | todo | | | |
 | 15 | [FastAPI & JSONL logging](15-api-logging.md) | T11, T12 | 14 | todo | | | |

@@ -98,10 +98,10 @@ Print the `LangChainDeprecationWarning` if it appears — it's expected (note in
 - `test_resolve_followup_unit` — pure function with handcrafted histories.
 
 ## Steps
-- [ ] `memory.py` (`resolve_followup` first, with unit tests)
-- [ ] Runnable wiring + `chat()`
-- [ ] Demo → 2 transcripts
-- [ ] Verify; PROGRESS; commit
+- [x] `memory.py` (`resolve_followup` first, with unit tests)
+- [x] Runnable wiring + `chat()`
+- [x] Demo → 2 transcripts
+- [x] Verify; PROGRESS; commit
 
 ## Verify
 1. `uv run python -m credobot.memory` → two transcript files; multi-turn shows resolution;

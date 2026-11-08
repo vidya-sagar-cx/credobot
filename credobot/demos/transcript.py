@@ -16,6 +16,16 @@ class Transcript:
         self.blocks.append(block)
         print(f"\n## {text}")
 
+    def h3(self, text: str) -> None:
+        block = f"### {text}\n"
+        self.blocks.append(block)
+        print(f"\n### {text}")
+
+    def bullet(self, text: str) -> None:
+        block = f"- {text}\n"
+        self.blocks.append(block)
+        print(f"- {text}")
+
     def para(self, text: str) -> None:
         block = f"{text}\n"
         self.blocks.append(block)
