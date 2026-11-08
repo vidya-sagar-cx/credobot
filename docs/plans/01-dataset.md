@@ -102,11 +102,11 @@ result, and the first 10 records as a table.
 - `test_records_by_id` — lookup by id round-trips.
 
 ## Steps
-- [ ] Implement `dataset.py` constants, `generate`, `stats`, `validate`
-- [ ] Run `uv run python dataset.py`; iterate seed/weights until VALID
-- [ ] Add transcript output in `main()`
-- [ ] Write `tests/test_dataset.py`
-- [ ] Run Verify; fill DECISIONS keys; update PROGRESS; commit
+- [x] Implement `dataset.py` constants, `generate`, `stats`, `validate`
+- [x] Run `uv run python dataset.py`; iterate seed/weights until VALID
+- [x] Add transcript output in `main()`
+- [x] Write `tests/test_dataset.py`
+- [x] Run Verify; fill DECISIONS keys; update PROGRESS; commit
 
 ## Verify
 1. `uv run python dataset.py` → exits 0, prints `VALID`, category counts all ≥3,

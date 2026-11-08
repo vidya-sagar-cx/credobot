@@ -9,13 +9,13 @@ change log at the bottom.
 |---|---|---|---|---|
 | `python_version` | 3.12 | 00 | all | pinned in `.python-version` |
 | `pkg_versions` | crewai 1.15.37, autogen-agentchat 0.7.5, autogen-ext 0.7.5, chromadb 1.5.9, sentence-transformers 6.2.0, langchain-core 1.7.6, fastapi 0.162.2 | 00 | 07, 08, 13 | locked via uv sync |
-| `dataset_seed` | TBD | 01 | 06, 17 | |
-| `dataset_n` | TBD | 01 | 06, 17 | |
-| `category_weights` | TBD | 01 | 17 | |
-| `status_weights` | TBD | 01 | 17 | |
-| `amount_ranges_inr` | TBD | 01 | 17 | per category, + 1-sentence rationale |
-| `fraud_probability` | TBD | 01 | 17 | |
-| `dataset_stats` | TBD | 01 | 17 | counts per category, per status, fraud % |
+| `dataset_seed` | 2026 | 01 | 06, 17 | Tried 1 seed (seed 2026 passed all checks on first draw) |
+| `dataset_n` | 60 | 01 | 06, 17 | Exceeds minimum threshold (>=40) |
+| `category_weights` | [0.25, 0.20, 0.20, 0.15, 0.20] | 01 | 17 | Personal: 0.25, Home: 0.20, Auto: 0.20, Education: 0.15, Business: 0.20 |
+| `status_weights` | [0.20, 0.25, 0.20, 0.15, 0.20] | 01 | 17 | Submitted: 0.20, Under Review: 0.25, Approved: 0.20, Rejected: 0.15, Disbursed: 0.20 |
+| `amount_ranges_inr` | Personal: ₹50k-₹25L, Home: ₹10L-₹1.5Cr, Auto: ₹2L-₹30L, Education: ₹1L-₹40L, Business: ₹5L-₹2Cr | 01 | 17 | Ranges mirror typical Indian retail-bank product limits: unsecured personal loans up to ₹25 lakh, home loans ₹10 lakh–₹1.5 crore, vehicle loans up to ₹30 lakh, education up to ₹40 lakh and MSME business loans up to ₹2 crore. |
+| `fraud_probability` | 0.18 | 01 | 17 | Yields 20.0% fraud review rate |
+| `dataset_stats` | Categories: Personal=22, Auto=12, Home=11, Business=9, Education=6; Statuses: Under Review=22, Approved=15, Disbursed=10, Rejected=7, Submitted=6; Fraud: 12/60 (20.0%) | 01 | 17 | All categories >= 3; all statuses >= 1; fraud % in [10%, 30%] |
 | `kb_doc_ids` | TBD | 02 | 03, 05, 16 | list of filenames without `.md` |
 | `embed_model` | sentence-transformers/all-MiniLM-L6-v2 | 03 | 04, 09 | |
 | `fixed_chunk_params` | TBD (size/overlap chars) | 03 | 05, 17 | |
@@ -39,3 +39,4 @@ change log at the bottom.
 | Date | Plan | Change |
 |---|---|---|
 | 2026-11-08 | 00 | Record locked package versions |
+| 2026-11-08 | 01 | Record dataset seed, weights, ranges, rationale, and stats |
