@@ -1,1 +1,2 @@
 """CredoBot package."""
+

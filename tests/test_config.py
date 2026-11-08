@@ -51,3 +51,4 @@ def test_transcript_writes_utf8(tmp_path, monkeypatch):
     content_str = out_path.read_text(encoding="utf-8")
     assert "₹1,00,000" in content_str
     assert "Sample Title" in content_str
+

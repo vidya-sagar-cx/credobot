@@ -68,3 +68,4 @@ def test_records_by_id():
         rid = r["record_id"]
         assert rid in RECORDS_BY_ID
         assert RECORDS_BY_ID[rid] == r
+

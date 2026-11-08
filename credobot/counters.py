@@ -29,3 +29,4 @@ def reset(*names: str) -> None:
                 _counts.pop(name, None)
         else:
             _counts.clear()
+

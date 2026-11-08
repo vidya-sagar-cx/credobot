@@ -17,10 +17,10 @@ change log at the bottom.
 | `fraud_probability` | 0.18 | 01 | 17 | Yields 20.0% fraud review rate |
 | `dataset_stats` | Categories: Personal=22, Auto=12, Home=11, Business=9, Education=6; Statuses: Under Review=22, Approved=15, Disbursed=10, Rejected=7, Submitted=6; Fraud: 12/60 (20.0%) | 01 | 17 | All categories >= 3; all statuses >= 1; fraud % in [10%, 30%] |
 | `kb_doc_ids` | account_closure, credit_card_fees, credit_score_factors, emi_calculation, fraud_dispute, interest_rate_slabs, joint_accounts, kyc_documents, loan_application_process, loan_eligibility, minimum_balance, nri_accounts, prepayment_penalty | 02 | 03, 05, 16 | 13 documents (12 required topics + 1 loan application lifecycle) |
-| `embed_model` | sentence-transformers/all-MiniLM-L6-v2 | 03 | 04, 09 | |
-| `fixed_chunk_params` | TBD (size/overlap chars) | 03 | 05, 17 | |
-| `sentence_chunk_params` | TBD (max sentences) | 03 | 05, 17 | |
-| `chunk_counts` | TBD (kb_fixed / kb_sentence) | 03 | 17 | |
+| `embed_model` | sentence-transformers/all-MiniLM-L6-v2 | 03 | 04, 09 | Local 384-dimensional dense embeddings |
+| `fixed_chunk_params` | size=200 chars, overlap=50 chars, snap forward max 20 chars | 03 | 05, 17 | Sliding character window with whitespace snapping |
+| `sentence_chunk_params` | sentences_per_chunk=2 | 03 | 05, 17 | Consecutive 2-sentence groups without overlap |
+| `chunk_counts` | kb_fixed: 62 chunks, kb_sentence: 26 chunks | 03 | 17 | ChromaDB indexed counts across 13 documents |
 | `calibration_sims` | TBD (per query, per collection) | 04 | 17 | |
 | `idk_threshold` | TBD | 04 | 08, 09, 16, 17 | also in `credobot/config.py` |
 | `top_k` | 3 | 04 | 05, 08 | |
@@ -41,3 +41,4 @@ change log at the bottom.
 | 2026-11-08 | 00 | Record locked package versions |
 | 2026-11-08 | 01 | Record dataset seed, weights, ranges, rationale, and stats |
 | 2026-11-08 | 02 | Record 13 kb_doc_ids |
+| 2026-11-08 | 03 | Record chunking parameters and indexed chunk counts (62 fixed, 26 sentence) |

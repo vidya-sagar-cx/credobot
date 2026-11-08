@@ -10,7 +10,7 @@ Find a plan's commit with `git log --oneline --grep "plan NN"`.
 | 00 | [Scaffold & tooling](00-scaffold.md) | — | — | done | antigravity | 2026-11-08 | Project scaffolded, deps locked, tests passing |
 | 01 | [Loan dataset generator](01-dataset.md) | T1 | 00 | done | antigravity | 2026-11-08 | Seed 2026, 60 records, 20% fraud, valid |
 | 02 | [Knowledge base](02-knowledge-base.md) | T2 | 00 | done | antigravity | 2026-11-08 | 13 policy docs, sentence splitter, loader |
-| 03 | [Chunking & indexing](03-chunking-index.md) | T3 | 02 | todo | | | |
+| 03 | [Chunking & indexing](03-chunking-index.md) | T3 | 02 | done | antigravity | 2026-11-08 | 62 fixed and 26 sentence chunks indexed |
 | 04 | [Retrieval, calibration, grounded generation](04-grounded-generation.md) | T4 | 03 | todo | | | |
 | 05 | [Chunking P/R evaluation](05-chunking-eval.md) | T5 | 04 | todo | | | |
 | 06 | [Loan status tool & escalation](06-loan-status-tool.md) | T6 | 01 | todo | | | |

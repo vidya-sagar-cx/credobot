@@ -117,11 +117,11 @@ its own default ONNX model.
 - `test_add_document` — adding a new doc increases both counts and is retrievable.
 
 ## Steps
-- [ ] Implement `chunking.py` + tests
-- [ ] Implement `embeddings.py`
-- [ ] Implement `index.py` (`build_index`, `add_document`, `ensure_index`, `main`)
-- [ ] Write `tests/test_index.py`
-- [ ] Run Verify; record params/counts; update PROGRESS; commit
+- [x] Implement `chunking.py` + tests
+- [x] Implement `embeddings.py`
+- [x] Implement `index.py` (`build_index`, `add_document`, `ensure_index`, `main`)
+- [x] Write `tests/test_index.py`
+- [x] Run Verify; record params/counts; update PROGRESS; commit
 
 ## Verify
 1. `uv run python -m credobot.rag.index` → prints counts for `kb_fixed` and `kb_sentence`

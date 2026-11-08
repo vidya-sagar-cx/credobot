@@ -17,3 +17,4 @@ def isolated_env(tmp_path, monkeypatch):
     monkeypatch.setattr(config, "CHROMA_DIR", tmp_path / "chroma")
     monkeypatch.setattr(config, "LOG_DIR", tmp_path / "logs")
     return tmp_path
+

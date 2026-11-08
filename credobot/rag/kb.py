@@ -47,3 +47,4 @@ def split_sentences(text: str) -> list[str]:
         return []
     parts = re.split(r'(?<=[.!?])\s+(?=[A-Z₹0-9"(])', text)
     return [p.strip() for p in parts if p.strip()]
+
