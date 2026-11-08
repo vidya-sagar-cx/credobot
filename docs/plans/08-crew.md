@@ -161,12 +161,12 @@ JSON, and "schema validation: PASS".
 - `test_oos_query_unknown_intent` — OOS question → answer contains IDK message, grounded False.
 
 ## Steps
-- [ ] `schemas.py`
-- [ ] `rag_tool.py`, `crew_tools.py`
-- [ ] `agents.py`, `crew.py`
-- [ ] `MockLLM.compose()`
-- [ ] Demo + transcript
-- [ ] Tests; Verify; PROGRESS; commit
+- [x] `schemas.py`
+- [x] `rag_tool.py`, `crew_tools.py`
+- [x] `agents.py`, `crew.py`
+- [x] `MockLLM.compose()`
+- [x] Demo + transcript
+- [x] Tests; Verify; PROGRESS; commit
 
 ## Verify
 1. `uv run python -m credobot.crew.crew` → 3 runs, transcript shows `rag_lookup` invoked on

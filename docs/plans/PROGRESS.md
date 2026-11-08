@@ -15,7 +15,7 @@ Find a plan's commit with `git log --oneline --grep "plan NN"`.
 | 05 | [Chunking P/R evaluation](05-chunking-eval.md) | T5 | 04 | done | antigravity | 2026-11-08 | kb_fixed won (F1=0.9091 vs 0.7368), deployed |
 | 06 | [Loan status tool & escalation](06-loan-status-tool.md) | T6 | 01 | done | antigravity | 2026-11-08 | Formula + threshold 0.55 escalates 20% |
 | 07 | [MockLLM & LLM factory](07-mock-llm.md) | — | 00 | done | antigravity | 2026-11-08 | BaseLLM subclass with pitfall guards & ReAct |
-| 08 | [CrewAI crew & structured output](08-crew.md) | T7, T9 | 04, 06, 07 | todo | | | |
+| 08 | [CrewAI crew & structured output](08-crew.md) | T7, T9 | 04, 06, 07 | done | antigravity | 2026-11-08 | Sequential crew, RAG & status tools, CrewResponse validated |
 | 09 | [Guardrails](09-guardrails.md) | T10 | 04 | todo | | | |
 | 10 | [Governance](10-governance.md) | T15 | 08 | todo | | | |
 | 11 | [Response cache](11-cache.md) | T16 | 04 | todo | | | |

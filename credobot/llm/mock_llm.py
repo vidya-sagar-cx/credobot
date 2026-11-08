@@ -70,13 +70,118 @@ class MockLLM(BaseLLM):
         """Fallback response when no tool can be selected."""
         if role == "Lookup Agent":
             return "NO_RECORD_ID"
+        if role == "Retrieval Agent":
+            return "NO_POLICY_QUESTION"
         return "I don't know — no suitable tool or information available."
 
     def compose(self, prompt: list[dict[str, str]], response_model: Any = None) -> str:
-        """Compose response; overridden in Plan 08 with full Pydantic schema builder."""
-        if response_model is not None:
-            try:
-                return response_model().model_dump_json()
-            except Exception:
-                return "{}"
-        return "{}"
+        """Compose structured response combining retrieval and lookup outputs."""
+        import json
+        from credobot.crew.schemas import CrewResponse, LoanStatus
+
+        prompt_text = "\n".join(m.get("content", "") for m in prompt)
+
+        # Extract only the task context portion (after 'This is the context you're working with:')
+        # to avoid matching OpenAPI schema definitions.
+        context_text = prompt_text
+        if "This is the context you're working with:" in prompt_text:
+            context_text = prompt_text.split("This is the context you're working with:", 1)[1]
+        if "Provide your complete response:" in context_text:
+            context_text = context_text.split("Provide your complete response:", 1)[0]
+
+        rag_answer = ""
+        sources: list[str] = []
+        grounded = False
+        fallback = True
+        top_similarity: float | None = None
+        record: LoanStatus | None = None
+
+        blocks = context_text.split("----------")
+        for b in blocks:
+            b = b.strip()
+            if not b or b in ("NO_RECORD_ID", "NO_POLICY_QUESTION"):
+                continue
+            if "{" in b and "}" in b:
+                try:
+                    j_str = b[b.find("{") : b.rfind("}") + 1]
+                    data = json.loads(j_str)
+                    if "top_similarity" in data:
+                        rag_answer = data.get("answer", "")
+                        sources = data.get("sources", [])
+                        grounded = bool(data.get("grounded", False))
+                        fallback = bool(data.get("fallback", True))
+                        top_similarity = data.get("top_similarity")
+                    elif "escalation_score" in data:
+                        if "status" in data and "error" not in data:
+                            record = LoanStatus(
+                                record_id=data["record_id"],
+                                category=data["category"],
+                                status=data["status"],
+                                loan_amount_inr=data["loan_amount_inr"],
+                                days_since_created=data["days_since_created"],
+                                flagged_for_fraud_review=data["flagged_for_fraud_review"],
+                                escalation_score=data["escalation_score"],
+                                escalate=data["escalate"],
+                            )
+                except Exception:
+                    pass
+
+        has_record = record is not None
+        has_policy = bool(sources) and not fallback
+
+        # If user only asked for application status, ignore extraneous RAG hits
+        user_query = react.extract_query(prompt) or ""
+        if has_record and react.is_status_only_query(user_query):
+            has_policy = False
+
+        # Determine Intent
+        if has_record and has_policy:
+            intent = "mixed"
+        elif has_record:
+            intent = "status"
+        elif has_policy:
+            intent = "policy"
+        else:
+            intent = "unknown"
+
+        # Construct Answer Text
+        status_sentence = ""
+        if has_record:
+            assert record is not None
+            if record.escalate:
+                clause = f"Escalation score {record.escalation_score:.2f} — escalated to lending operations."
+            else:
+                clause = f"Escalation score {record.escalation_score:.2f} — standard processing SLA applies."
+            status_sentence = (
+                f"Application {record.record_id} ({record.category}, ₹{record.loan_amount_inr:,}) is {record.status}. "
+                f"{clause}"
+            )
+
+        if has_policy and has_record:
+            final_text = f"{rag_answer}\n\n{status_sentence}"
+            final_grounded = True
+        elif has_policy:
+            final_text = rag_answer
+            final_grounded = grounded
+        elif has_record:
+            final_text = status_sentence
+            final_grounded = True
+        else:
+            final_text = (
+                rag_answer
+                if rag_answer
+                else "I don't know — the X Corp policy knowledge base doesn't cover that. Please contact lending operations."
+            )
+            final_grounded = False
+
+        resp = CrewResponse(
+            answer=final_text,
+            intent=intent,
+            sources=sources if has_policy else [],
+            record=record,
+            escalate=record.escalate if record else False,
+            grounded=final_grounded,
+            top_similarity=top_similarity,
+            guardrail_events=[],
+        )
+        return resp.model_dump_json()
